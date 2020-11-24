@@ -1,13 +1,12 @@
 {
-  "name": "cra-template-pwa",
-  "description": "A collection of PWA templates for Create React App",
+  "name": "cra-template-seasoning",
+  "description": "基于cra-template-pwa和seasoning生成的业务模版",
   "version": "1.0.0",
-  "author": "Jeff Posnick",
+  "author": "dyb881",
   "license": "MIT",
-  "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/cra-template/pwa"
+    "url": "https://github.com/dyb881/cra-template-seasoning"
   },
   "engines": {
     "node": ">=10.0.0"

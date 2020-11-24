@@ -1,5 +1,5 @@
 {
-  "name": "cra-template-pwa-typescript",
+  "name": "cra-template-seasoning",
   "version": "1.0.4",
   "keywords": [
     "react",
@@ -7,14 +7,15 @@
     "template",
     "pwa",
     "workbox",
-    "service-worker"
+    "service-worker",
+    "seasoning"
   ],
-  "description": "A progressive web app template for Create React App and TypeScript, using Workbox.",
+  "description": "基于cra-template-pwa和seasoning生成的业务模版",
   "main": "template.json",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cra-template/pwa",
-    "directory": "packages/cra-template-pwa-typescript"
+    "url": "https://github.com/dyb881/cra-template-seasoning",
+    "directory": "packages/cra-template-seasoning"
   },
   "license": "MIT",
   "engines": {
