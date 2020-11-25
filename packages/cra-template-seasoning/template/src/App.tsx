@@ -1,14 +1,11 @@
-import logo from './images/logo.svg';
+import { Router, Pages } from 'common/router';
+import './App.css';
 import './App.less';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <Router>
+    <Pages />
+  </Router>
+);
 
 export default App;

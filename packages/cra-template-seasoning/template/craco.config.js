@@ -27,17 +27,20 @@ module.exports = {
   },
   plugins: [
     {
+      // less 配置
+      plugin: require('craco-less'),
+      options: {
+        lessLoaderOptions: {
+          // 重写 less 变量
+          lessOptions: { javascriptEnabled: true, modifyVars },
+        },
+      },
+    },
+    {
       // Day.js 替换 momentjs 来大幅减小打包大小
       plugin: require('antd-dayjs-webpack-plugin'),
       // 插件
       plugins: [],
-    },
-
-    {
-      // less 配置
-      plugin: require('craco-less'),
-      // 重写 less 变量
-      options: { lessLoaderOptions: { lessOptions: { javascriptEnabled: true, modifyVars } } },
     },
   ],
   webpack: {
