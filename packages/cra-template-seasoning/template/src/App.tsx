@@ -7,5 +7,5 @@ const App = () => (
     <Pages />
   </Router>
 );
-
+console.log(1);
 export default App;
