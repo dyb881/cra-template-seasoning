@@ -1,4 +1,4 @@
-import { DataTool, Request } from 'seasoning';
+import { dataTool, Request } from 'seasoning';
 
 /**
  * 是否生产环境
@@ -9,7 +9,7 @@ export const isProduction = window.location.protocol === 'https:';
  * 链接参数
  * http://localhost?val=1 => params = {val: 1}
  */
-export const params = DataTool.getParams();
+export const params = dataTool.getParams();
 
 // ------------------------------- 请求器配置 --------------------------------- //
 
