@@ -1,3 +1,4 @@
+import { Toast } from 'antd-mobile';
 import { dataTool, Request } from 'seasoning';
 
 /**
@@ -33,4 +34,8 @@ export const { baseURL, get, post, put, patch, del, upload } = new Request({
   host, // 请求服务地址
   apiPath: '/api', // 接口公用路径
   console: true, // 打印日志
+  interceptorsResponse: (res, config) => {
+    res.ok || config.noToast || Toast.fail(res.errorText, 1);
+    return res;
+  },
 });
