@@ -22,7 +22,7 @@ module.exports = {
       getImport('antd', { libraryDirectory: 'es', style: true }),
       getImport('antd-mobile', { libraryDirectory: 'es', style: true }),
       getImport('lodash', { libraryDirectory: '', camel2DashComponentName: false }),
-      getImport('seasoning', { libraryDirectory: 'es', camel2DashComponentName: false, style: true }),
+      getImport('seasoning', { libraryDirectory: 'es' }),
     ],
   },
   plugins: [
