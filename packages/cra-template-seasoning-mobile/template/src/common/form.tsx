@@ -4,12 +4,7 @@ import FormSource, { FormInstance, useForm as useFormSource, Field } from 'rc-fi
 import { FieldProps } from 'rc-field-form/es/Field';
 import { FormProps } from 'rc-field-form/es/Form';
 import { ValidateErrorEntity } from 'rc-field-form/es/interface';
-import {
-  TFormEnhance,
-  TFormItemPropsEnhance,
-  useFormEnhance as formEnhance,
-  formItemEnhance,
-} from 'seasoning/es/form-enhance';
+import { TFormEnhance, TFormItemPropsEnhance, useFormEnhance, formItemEnhance } from 'seasoning/es/form-enhance';
 
 // ------------------------ 类型增强 ------------------------ //
 
@@ -21,7 +16,7 @@ export type TFormItemProps = TFormItemPropsEnhance<FieldProps>;
 
 // ------------------------ 表单增强 ------------------------ //
 
-export const useForm = formEnhance<TForm>(useFormSource);
+export const useForm = useFormEnhance<TForm>(useFormSource);
 
 export const FormItem = formItemEnhance<TFormItemProps>(Field, () => <input />);
 
