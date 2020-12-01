@@ -7,6 +7,7 @@
 ```sh
 npx create-react-app my-app --template seasoning // 默认模版
 npx create-react-app my-app --template seasoning-mobile // 移动端模版
+npx create-react-app my-app --template seasoning-pc // PC端模版
 ```
 
 ```

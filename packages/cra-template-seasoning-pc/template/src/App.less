@@ -1,0 +1,165 @@
+/*
+  主题色
+  '@ra-p': '#1890ff', // 全局主色
+  '@ra-s': '#52c41a', // 成功色
+  '@ra-w': ' #faad14', // 警告色
+  '@ra-e': '#f5222d', // 错误色
+  '@ra-fs': '14px', // 主字号
+  '@ra-c': 'rgba(0, 0, 0, 0.85)', // 主文本色
+  '@ra-cs': 'rgba(0, 0, 0, .45)', // 次文本色
+  '@ra-dc': 'rgba(0, 0, 0, .25)', // 失效色
+  '@ra-dcb': 'rgba(0, 0, 0, .05)', // 失效背景色
+  '@ra-bc': '#eeeeee', // 边框色
+  '@ra-bcd': '#cccccc', // 边框色-深色
+  '@ra-b': '#f1f1f1', // 背景色
+*/
+
+/************************** 常用类 **************************/
+
+.fill() {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// 填满
+.fill {
+  position: absolute;
+  .fill();
+}
+
+.fill-fixed {
+  position: fixed;
+  .fill();
+}
+
+// 上下居中
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+// 内容居中
+.center {
+  .align-center;
+  justify-content: center;
+}
+
+// 间隔均分
+.between {
+  display: flex;
+  justify-content: space-between;
+}
+
+// 间隔均分 并上下居中
+.between-center {
+  .between;
+  align-items: center;
+}
+
+// 纵向排列
+.column {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+// 纵向居中
+.column-center {
+  .center;
+  flex-direction: column;
+}
+
+.transition {
+  transition: all 0.3s;
+}
+
+.overflow {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+/************************** 常用类 **************************/
+
+/************************** 常用字颜色 **************************/
+
+.primary,
+.edit {
+  color: @ra-p;
+}
+
+.success {
+  color: @ra-s;
+}
+
+.warning {
+  color: @ra-w;
+}
+
+.error,
+.delete {
+  color: @ra-e;
+}
+
+.secondary {
+  color: @ra-cs;
+}
+
+.disabled {
+  color: @ra-dc;
+}
+
+/************************** 常用字颜色 **************************/
+
+/************************** 页面默认布局 **************************/
+
+// 根标签
+#root {
+  .fill;
+  overflow: hidden;
+  font-style: @ra-fs;
+  line-height: 1;
+  background-color: @ra-b;
+  font-size: 16px;
+}
+
+// 弹性盒子布局
+.box(@name) {
+  .column;
+
+  // 防止压缩
+  & > :not(.@{name}-fill) {
+    flex-shrink: 0;
+  }
+
+  // 自动填满
+  & > .@{name}-fill {
+    .column;
+    .overflow;
+    flex: 1;
+    position: relative;
+
+    & > * {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.box {
+  .box(box);
+}
+
+// 页面布局 填满并加入弹性盒子,并可滚动
+.page {
+  .fill;
+  .box(page);
+  .overflow;
+  box-sizing: border-box;
+}
+
+/************************** 页面默认布局 **************************/
