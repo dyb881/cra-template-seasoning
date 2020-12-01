@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form as FormSource, Input, Button } from 'antd';
 import { FormInstance } from 'antd/es/form';
 import { FormItemProps } from 'antd/es/form/FormItem';
 import { TFormEnhance, TFormItemPropsEnhance, useFormEnhance, formItemEnhance } from 'seasoning/es/form-enhance';
@@ -14,8 +14,10 @@ export type TFormItemProps = TFormItemPropsEnhance<FormItemProps>;
 
 // ------------------------ 表单增强 ------------------------ //
 
-export const useForm = useFormEnhance<TForm>(Form.useForm);
+export const useForm = useFormEnhance<TForm>(FormSource.useForm);
 
-export const FormItem = formItemEnhance<TFormItemProps>(Form.Item, () => <input />);
+export const FormItem = formItemEnhance<TFormItemProps>(FormSource.Item, () => <input />);
+
+export const Form = FormSource;
 
 // ------------------------ 表单增强 ------------------------ //
