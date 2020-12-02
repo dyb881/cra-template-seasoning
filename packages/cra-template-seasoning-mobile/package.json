@@ -5,9 +5,6 @@
     "react",
     "create-react-app",
     "template",
-    "pwa",
-    "workbox",
-    "service-worker",
     "seasoning"
   ],
   "description": "基于cra-template-pwa和seasoning生成的业务模版",
