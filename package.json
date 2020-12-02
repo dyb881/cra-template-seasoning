@@ -20,8 +20,7 @@
     "format": "prettier --write \"**/*.{ts,js,json,md}\"",
     "format:check": "prettier --debug-check \"**/*.{ts,js,json,md}\"",
     "to:mobile": "rm -rf packages/cra-template-seasoning-mobile/template && cp -R packages/cra-template-seasoning/template packages/cra-template-seasoning-mobile/template && cp -R src/mobile/template packages/cra-template-seasoning-mobile",
-    "to:pc": "rm -rf packages/cra-template-seasoning-pc/template && cp -R packages/cra-template-seasoning/template packages/cra-template-seasoning-pc/template && cp -R src/pc/template packages/cra-template-seasoning-pc",
-    "to:all": "npm run to:mobile && npm run to:pc"
+    "to:pc": "rm -rf packages/cra-template-seasoning-pc/template && cp -R packages/cra-template-seasoning/template packages/cra-template-seasoning-pc/template && cp -R src/pc/template packages/cra-template-seasoning-pc"
   },
   "husky": {
     "hooks": {
