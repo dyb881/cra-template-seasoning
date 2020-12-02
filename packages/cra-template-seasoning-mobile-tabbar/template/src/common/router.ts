@@ -1,5 +1,6 @@
 import { RouterPages } from 'seasoning';
 import { TRouter as TRouterSource } from 'seasoning/es/router-pages';
+import { TTab, tabbar } from './tabbar';
 
 /**
  * 写入标题
@@ -17,10 +18,26 @@ type TRouter = TRouterSource & {
 };
 
 /**
+ * tabbar 配置
+ */
+const tabs: TTab[] = [
+  { pagePath: '/home', title: '首页' },
+  { pagePath: '/user', title: '用户页' },
+];
+
+/**
  * 路由配置
  */
 const routers: TRouter[] = [
-  { path: '/', pagePath: '/home' },
+  {
+    path: '/',
+    component: tabbar({
+      tabs,
+      listen: ({ title }) => {
+        setTitle(title);
+      },
+    }),
+  },
   { path: '/user', title: '用户页' },
 ];
 
