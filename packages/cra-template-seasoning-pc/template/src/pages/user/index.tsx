@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import style from './style.module.css';
+import style from './style.module.less';
 import { ReactComponent as Logo } from 'images/logo.svg';
 
 const Page = () => {

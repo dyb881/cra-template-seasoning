@@ -1,11 +1,10 @@
 {
   "package": {
     "dependencies": {
-      "@craco/craco": "^5.8.0",
       "@testing-library/jest-dom": "^5.11.6",
       "@testing-library/react": "^11.2.2",
-      "@testing-library/user-event": "^12.2.2",
-      "@types/jest": "^26.0.15",
+      "@testing-library/user-event": "^12.3.0",
+      "@types/jest": "^26.0.16",
       "@types/node": "^14.14.10",
       "@types/react": "^17.0.0",
       "@types/react-dom": "^17.0.0",
@@ -13,9 +12,10 @@
       "antd-dayjs-webpack-plugin": "^1.0.1",
       "antd-mobile": "^2.3.4",
       "babel-plugin-import": "^1.13.3",
-      "craco-less": "^1.17.1",
-      "cross-env": "^7.0.2",
+      "cross-env": "^7.0.3",
+      "customize-cra": "^1.0.0",
       "react": "^17.0.1",
+      "react-app-rewired": "^2.1.6",
       "react-dom": "^17.0.1",
       "react-router-dom": "^5.2.0",
       "react-scripts": "4.0.1",
@@ -24,9 +24,9 @@
       "web-vitals": "^1.0.1"
     },
     "scripts": {
-      "start": "craco start",
-      "build": "cross-env PUBLIC_URL=. craco build",
-      "test": "craco test",
+      "start": "react-app-rewired start",
+      "build": "cross-env PUBLIC_URL=. react-app-rewired build",
+      "test": "react-app-rewired test",
       "start:https": "cross-env HTTPS=true yarn start",
       "build:production": "cross-env PUBLIC_URL=. GENERATE_SOURCEMAP=false npm run build",
       "analyze": "source-map-explorer 'build/static/js/*.js'",
