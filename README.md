@@ -1,6 +1,12 @@
 # Create React App Seasoning Templates
 
-基于[cra-template-pwa](https://github.com/cra-template/pwa)和[seasoning](https://github.com/dyb881/seasoning)生成的业务模版
+基于[seasoning](https://github.com/dyb881/seasoning)开发的业务模版
+
+## 学习使用
+
+- [react 的基础知识和常用包](https://github.com/dyb881/recommended)
+- [环境配置](https://www.yuque.com/xiangbudaowojingran/web/vx6qpl)
+- [使用教程](https://www.yuque.com/xiangbudaowojingran/web/dqq25f)
 
 ## 使用方法
 
@@ -27,7 +33,6 @@ yarn serve // 运行静态文件服务器，并指向 build 文件夹
 
 - apis - 所有接口统一在此封装
 - common - 公用功能
-  - compatible - 移动端浏览器兼容处理
   - request - 请求器初始化生成
   - router - 路由生成
 - components - 业务组件封装（指会被多次使用或独立于页面外的组件，页面独有组件建议在页面文件夹内开发）
