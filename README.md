@@ -9,6 +9,7 @@ npx create-react-app my-app --template seasoning // 默认模版
 npx create-react-app my-app --template seasoning-mobile // 移动端模版
 npx create-react-app my-app --template seasoning-mobile-tabbar // 移动端模版，带上 tabbar
 npx create-react-app my-app --template seasoning-pc // PC端模版
+npx create-react-app my-app --template seasoning-pc-admin // PC端模版，管理后台模版
 ```
 
 ```
