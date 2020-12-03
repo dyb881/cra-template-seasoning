@@ -1,0 +1,46 @@
+.formSearch {
+  :global {
+    .ant-form-item {
+      margin-bottom: 8px;
+    }
+
+    .ant-select,
+    .ant-cascader-picker {
+      min-width: 100px;
+    }
+
+    .ant-checkbox-group {
+      line-height: 32px;
+    }
+  }
+}
+
+.virtualColumn {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.table {
+  overflow: hidden;
+  min-height: 400px;
+
+  :global {
+    .ant-table-row-expand-icon {
+      vertical-align: -1px;
+    }
+  }
+}
+
+.columnsSetting {
+  & > span {
+    font-size: 12px;
+    transform-origin: right;
+    transform: scale(0.8);
+  }
+
+  :global {
+    .ant-checkbox-wrapper {
+      transform-origin: left;
+      transform: scale(0.8);
+    }
+  }
+}
