@@ -16,6 +16,7 @@
   ],
   "scripts": {
     "lerna:publish": "lerna publish",
+    "push": "lerna publish",
     "changelog": "lerna-changelog",
     "format": "prettier --write \"**/*.{ts,js,json,md}\"",
     "format:check": "prettier --debug-check \"**/*.{ts,js,json,md}\"",
