@@ -24,7 +24,7 @@ const updates = async (packagePath) => {
   fs.removeSync(ncuPath);
 };
 
-const packagePath = join(__dirname, './packages/cra-template-seasoning');
+const packagePath = join(__dirname, '../packages/cra-template-seasoning');
 
 // 源模版
 const templateSource = join(packagePath, 'template');
@@ -56,7 +56,7 @@ const packages = {
 
     packages[item].forEach((item) => {
       // 模版代码
-      const src = join(__dirname, 'src', item, 'template');
+      const src = join(__dirname, item, 'template');
 
       const srcDir = fs.readdirSync(join(src, 'src'));
       // 模版内带有页面
