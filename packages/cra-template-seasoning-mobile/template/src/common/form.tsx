@@ -23,7 +23,6 @@ export const FormItem = formItemEnhance<TFormItemProps>(Field, () => <input />);
 export const Form: FC<FormProps> = (props) => {
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
     Toast.info(errorInfo.errorFields[0].errors[0], 1);
-    console.log(1);
   };
 
   return <FormSource onFinishFailed={onFinishFailed} {...props} />;

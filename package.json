@@ -21,9 +21,7 @@
     "changelog": "lerna-changelog",
     "format": "prettier --write \"**/*.{ts,js,json,md}\"",
     "format:check": "prettier --debug-check \"**/*.{ts,js,json,md}\"",
-    "to:mobile": "rm -rf packages/cra-template-seasoning-mobile/template && cp -R packages/cra-template-seasoning/template packages/cra-template-seasoning-mobile/template && cp -R src/mobile/template packages/cra-template-seasoning-mobile",
-    "to:mobile:tabbar": "rm -rf packages/cra-template-seasoning-mobile-tabbar/template && cp -R packages/cra-template-seasoning/template packages/cra-template-seasoning-mobile-tabbar/template && cp -R src/mobile/template packages/cra-template-seasoning-mobile-tabbar && cp -R src/mobile-tabbar/template packages/cra-template-seasoning-mobile-tabbar",
-    "to:pc": "rm -rf packages/cra-template-seasoning-pc/template && cp -R packages/cra-template-seasoning/template packages/cra-template-seasoning-pc/template && cp -R src/pc/template packages/cra-template-seasoning-pc"
+    "to:packages": "node ./to-packages.js"
   },
   "husky": {
     "hooks": {

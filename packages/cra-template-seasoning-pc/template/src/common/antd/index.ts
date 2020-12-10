@@ -16,3 +16,5 @@ export * from './dropdown';
 export * from './breadcrumb';
 export * from './modal';
 export * from './spin';
+
+export * from '../form';

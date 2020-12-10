@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useCallback } from 'react';
 import { useLocation, useHistory, matchPath } from 'react-router-dom';
 import { Menu, TMenuData, TMenuProps } from './menu';
-import { TRouters } from '../router';
+import { TRouter } from '../router';
 import { useStates } from 'seasoning/es/hooks';
 
 export type TMenuNavData = Pick<TMenuData, 'icon'> & {
@@ -110,9 +110,9 @@ export const menuNavDataHidden = (data: TMenuNavData[]) => {
  * 获取导航数据中路由信息
  */
 export const getMenuNavDataRouters = (data: TMenuNavData[]) => {
-  let routers: TRouters = [];
+  let routers: TRouter[] = [];
   for (let { path, pagePath, title, children } of data) {
-    path && routers.push({ path, pagePath: pagePath || path.slice(1).split('/:')[0], title });
+    path && routers.push({ path, pagePath: pagePath || path.split('/:')[0], title });
     if (children) routers = [...routers, ...getMenuNavDataRouters(children)];
   }
   return routers;

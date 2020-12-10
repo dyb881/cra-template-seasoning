@@ -17,7 +17,7 @@ export const Upload: React.FC<TUploadProps> = ({ max = 1, onChange, fileList = [
     <UploadSource
       listType="picture-card"
       multiple={max > 1}
-      onChange={info => {
+      onChange={(info) => {
         setLoading(info.file.status === 'uploading');
         onChange?.(info);
       }}

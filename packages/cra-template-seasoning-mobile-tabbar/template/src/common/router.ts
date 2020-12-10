@@ -3,16 +3,21 @@ import { TRouter as TRouterSource } from 'seasoning/es/router-pages';
 import { TTab, tabbar } from './tabbar';
 
 /**
+ * 默认标题
+ */
+export const defaultTitle = 'Seasoning-App';
+
+/**
  * 写入标题
  */
-export const setTitle = (title = 'Seasoning-App') => {
+export const setTitle = (title = defaultTitle) => {
   // 修改当前页面标题
   window.document.title = title;
   // 在支付宝 webview 内部调用标题写入
   window.AlipayJSBridge?.call('setTitle', { title });
 };
 
-type TRouter = TRouterSource & {
+export type TRouter = TRouterSource & {
   pagePath?: string; // 页面路径，基于 src/pages 目录
   title?: string; // 页面标题
 };
