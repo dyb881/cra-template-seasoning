@@ -1,10 +1,33 @@
 const fs = require('fs-extra');
 const { join } = require('path');
+const ncu = require('npm-check-updates');
 
-const source = join(__dirname, './packages/cra-template-seasoning');
+const updates = async (packagePath) => {
+  console.log('包版本更新', packagePath);
+  const templatePath = join(packagePath, 'template.json');
+  const json = require(templatePath);
+  console.log('生成缓存文件');
+  const ncuPath = join(packagePath, 'ncu.template.json');
+  fs.writeFileSync(ncuPath, JSON.stringify(json.package, null, 2));
+  console.log('请求更新判断');
+  const upgraded = await ncu.run({
+    packageFile: ncuPath,
+    jsonUpgraded: true,
+    silent: true,
+  });
+  console.log('待更新版本', upgraded);
+  console.log('合并版本');
+  Object.assign(json.package.dependencies, upgraded);
+  console.log('写入版本文件');
+  fs.writeFileSync(templatePath, JSON.stringify(json, null, 2));
+  console.log('删除缓存文件');
+  fs.removeSync(ncuPath);
+};
+
+const packagePath = join(__dirname, './packages/cra-template-seasoning');
 
 // 源模版
-const templateSource = join(source, 'template');
+const templateSource = join(packagePath, 'template');
 
 const packages = {
   mobile: ['mobile'],
@@ -13,27 +36,37 @@ const packages = {
   'pc-admin': ['pc', 'pc-admin'],
 };
 
-Object.keys(packages).forEach((item, index) => {
-  // 目标模版
-  const template = join(`${source}-${item}`, 'template');
+(async () => {
+  await updates(packagePath);
 
-  // 删除源模版
-  fs.removeSync(template);
+  for await (item of Object.keys(packages)) {
+    const packagePathItem = `${packagePath}-${item}`;
 
-  // 拷贝源模版
-  fs.copySync(templateSource, template);
+    await updates(packagePathItem);
 
-  packages[item].forEach((item) => {
-    // 模版代码
-    const src = join(__dirname, 'src', item, 'template');
+    console.log('模版更新', item);
 
-    const srcDir = fs.readdirSync(join(src, 'src'));
-    // 模版内带有页面
-    if (srcDir.includes('pages')) {
-      fs.removeSync(join(template, 'src/pages'));
-    }
+    const template = join(packagePathItem, 'template');
 
-    // 拷贝特定源码到模版
-    fs.copySync(src, template);
-  });
-});
+    console.log('删除模版');
+    fs.removeSync(template);
+
+    console.log('拷贝源模版');
+    fs.copySync(templateSource, template);
+
+    packages[item].forEach((item) => {
+      // 模版代码
+      const src = join(__dirname, 'src', item, 'template');
+
+      const srcDir = fs.readdirSync(join(src, 'src'));
+      // 模版内带有页面
+      if (srcDir.includes('pages')) {
+        console.log('删除源模版页面');
+        fs.removeSync(join(template, 'src/pages'));
+      }
+
+      console.log('模版覆盖', item);
+      fs.copySync(src, template);
+    });
+  }
+})();
