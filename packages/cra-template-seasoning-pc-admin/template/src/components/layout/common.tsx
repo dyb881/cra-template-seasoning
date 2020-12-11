@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Modal, Tooltip, Button, Pagination, Divider, ConfigProvider } from 'antd';
+import { Modal, Tooltip, Button, Pagination, Space, Divider, ConfigProvider, Image } from 'antd';
 import {
   FullscreenOutlined,
   FullscreenExitOutlined,
@@ -8,28 +8,17 @@ import {
   LoadingOutlined,
   ReloadOutlined,
 } from '@ant-design/icons';
-import { Form, FormItem, TFormItemProps, Spin, TSpinProps } from 'common/antd';
+import { Form, Spin, TSpinProps } from 'common/antd';
 import { combine } from 'stores';
 import { FormProps } from 'antd/es/form';
 import { ButtonProps } from 'antd/es/button';
 import { PaginationProps } from 'antd/es/pagination';
+import { ImageProps } from 'antd/es/Image';
 import { Img as ImgSource } from 'seasoning';
 import { TImgProps } from 'seasoning/es/img';
 import screenfull, { Screenfull } from 'screenfull';
 import classNames from 'classnames';
 import style from './style.module.less';
-
-export type TIntervalProps = React.HTMLAttributes<HTMLDivElement> & { left?: boolean; alignCenter?: boolean };
-
-/**
- * 间隔，默认右对齐
- */
-export const Interval: React.FC<TIntervalProps> = ({ left, alignCenter = true, className, ...props }) => (
-  <span
-    className={classNames(style.interval, style[left ? 'left' : 'right'], { 'align-center': alignCenter }, className)}
-    {...props}
-  />
-);
 
 export type TMenuSwitchProps = {
   open?: boolean;
@@ -106,9 +95,21 @@ export const Loading: React.FC<TSpinProps> = ({ loading, ...props }) => {
 /**
  * 图片组件
  */
-export const Img: React.FC<TImgProps> = (props) => (
-  <ImgSource loadingTip={<LoadingOutlined />} errorTip={<ReloadOutlined className="pointer" />} {...props} />
-);
+export const Img: React.FC<TImgProps & Pick<ImageProps, 'preview'>> = ({ preview = false, onClick, ...props }) => {
+  return (
+    <ImgSource
+      loadingTip={<LoadingOutlined />}
+      errorTip={<ReloadOutlined className="pointer" />}
+      onClick={preview ? undefined : onClick}
+      {...props}
+    >
+      {({ src, style: { width, height }, mode }) => {
+        if (mode?.includes('scaleToFill')) width = height = '100%';
+        return <Image {...{ src, width, height, preview }} />;
+      }}
+    </ImgSource>
+  );
+};
 
 /**
  * 自适应表单
@@ -116,14 +117,6 @@ export const Img: React.FC<TImgProps> = (props) => (
 export const FormMobile = combine<FormProps>(({ stores, layout, ...props }) => (
   <Form layout={stores.layout.isMobile ? 'vertical' : layout} {...props} />
 ));
-
-/**
- * 自适应表单 Item
- */
-export const FormItemMobile = combine<TFormItemProps>(({ stores, labelCol, wrapperCol, ...props }) => {
-  if (!stores.layout.isMobile) Object.assign(props, { labelCol, wrapperCol });
-  return <FormItem {...props} />;
-});
 
 /**
  * 自适应按钮
@@ -172,13 +165,4 @@ export const PaginationMobile = combine<PaginationProps>(({ stores, onChange, ..
 /**
  * 动作组件，自动添加分割线
  */
-export const Action: React.FC = ({ children }) => (
-  <>
-    {React.Children.map(children, (child, index) => (
-      <>
-        {index > 0 && <Divider type="vertical" />}
-        {child}
-      </>
-    ))}
-  </>
-);
+export const Action: React.FC = ({ children }) => <Space split={<Divider type="vertical" />}>{children}</Space>;

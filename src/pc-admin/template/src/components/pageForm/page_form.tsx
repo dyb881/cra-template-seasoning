@@ -1,8 +1,9 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import { SaveOutlined, UndoOutlined } from '@ant-design/icons';
-import { TForm, useForm, TSpinProps } from 'common/antd';
-import { RouterPageHeader, TRouterPageHeaderProps, FormItemMobile, Interval, Loading } from '../layout';
+import { TForm, useForm, TSpinProps, TFormItemProps, FormItem } from 'common/antd';
+import { combine } from 'stores';
+import { RouterPageHeader, TRouterPageHeaderProps, Loading } from '../layout';
 import { FormLayout, TFormLayoutProps } from './common';
 
 export type TPageFormProps = Pick<TSpinProps, 'loading'> &
@@ -26,19 +27,23 @@ export const PageForm = forwardRef<TForm, TPageFormProps>(
         <RouterPageHeader onBack={onBack} extra={extra} />
         <FormLayout name="pageForm" {...{ form, maxWidth, cols }} {...props}>
           {children}
-          <FormItemMobile wrapperCol={{ span, offset }}>
-            <Interval left>
+          <FormButtons formItemProps={{ wrapperCol: { span, offset } }}>
+            <Space>
               <Button type="primary" icon={<SaveOutlined />} htmlType="submit">
                 保存
               </Button>
               <Button icon={<UndoOutlined />} onClick={reset}>
                 重置
               </Button>
-            </Interval>
-          </FormItemMobile>
+            </Space>
+          </FormButtons>
         </FormLayout>
         <Loading loading={loading} />
       </>
     );
   }
 );
+
+const FormButtons = combine<TFormItemProps>(({ stores, formItemProps, ...props }) => {
+  return <FormItem formItemProps={stores.layout.isMobile ? undefined : formItemProps} {...props} />;
+});

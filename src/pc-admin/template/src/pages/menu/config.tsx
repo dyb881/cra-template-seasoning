@@ -17,7 +17,7 @@ export const createColumns = ({ add, edit, del }: any) => {
       title: '图标',
       dataIndex: 'icon',
       width: 60,
-      render: (v, { title }: any) => <PreviewColumn src={v} name={title} />,
+      render: (v) => <PreviewColumn src={v} name="图标" />,
     },
     {
       title: '内容',

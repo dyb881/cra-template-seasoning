@@ -1,12 +1,12 @@
 import React, { useCallback, forwardRef, useImperativeHandle, useMemo, useEffect, useRef } from 'react';
-import { Table } from 'antd';
+import { Table, Space } from 'antd';
 import { FormProps } from 'antd/es/form';
 import { TableProps, ColumnsType, ColumnGroupType } from 'antd/es/table';
 import { SearchOutlined, UndoOutlined } from '@ant-design/icons';
 import { useStates } from 'seasoning/es/hooks';
-import { TForm, useForm } from 'common/antd';
+import { TForm, useForm, FormItem } from 'common/antd';
 import { combine } from 'stores';
-import { Interval, FormMobile, ButtonMobile } from '../layout';
+import { FormMobile, ButtonMobile } from '../layout';
 import { VirtualTable } from './virtual_table';
 import classNames from 'classnames';
 import style from './style.module.less';
@@ -40,15 +40,17 @@ export const FormSearch = forwardRef<TForm, TFormSearchProps>(
         {...props}
       >
         {children}
-        <Interval alignCenter={false}>
-          <ButtonMobile type="primary" icon={<SearchOutlined />} htmlType="submit">
-            搜索
-          </ButtonMobile>
-          <ButtonMobile icon={<UndoOutlined />} onClick={reset}>
-            重置
-          </ButtonMobile>
-          {buttons}
-        </Interval>
+        <FormItem>
+          <Space>
+            <ButtonMobile type="primary" icon={<SearchOutlined />} htmlType="submit">
+              搜索
+            </ButtonMobile>
+            <ButtonMobile icon={<UndoOutlined />} onClick={reset}>
+              重置
+            </ButtonMobile>
+            {buttons}
+          </Space>
+        </FormItem>
       </FormMobile>
     );
   }
@@ -94,7 +96,7 @@ export const TableMobile = combine<TTableMobileProps>(
     };
 
     return (
-      <div ref={box} className={`box-fill ${style.table}`}>
+      <div ref={box} className={`page-fill ${style.table}`}>
         {dataSource.length > 100 ? <VirtualTable tableWidth={tableWidth} {...tableProps} /> : <Table {...tableProps} />}
       </div>
     );

@@ -1,6 +1,6 @@
 import React, { useRef, useCallback, useEffect, useMemo } from 'react';
 import { autorun } from 'mobx';
-import { message } from 'antd';
+import { message, Space } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { TForm, modalDel } from 'common/antd';
 import { ButtonMobile, TPageTableProps } from 'components';
@@ -132,12 +132,12 @@ export const useTable = (options: TUseTableOptions) => {
   const DelButton = useCallback<React.FC>(() => {
     const { length } = selectedRowKeys;
     return (
-      <>
+      <Space>
         <span>选中 {length} 条</span>
         <ButtonMobile danger icon={<DeleteOutlined />} disabled={!length} onClick={() => del(selectedRowKeys)}>
           删除
         </ButtonMobile>
-      </>
+      </Space>
     );
   }, [selectedRowKeys.length]);
 

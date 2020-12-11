@@ -26,13 +26,13 @@ export const createColumns = ({ del, menuData = {} }: any) => {
       title: '图标',
       dataIndex: 'icon',
       width: 60,
-      render: (v, { title }: any) => <PreviewColumn src={v} name={title} />,
+      render: (v) => <PreviewColumn src={v} name="图标" />,
     },
     {
       title: '图组',
       dataIndex: 'picture_group',
       width: 60,
-      render: (v, { title }: any) => <PreviewColumn src={v} name={title} type="imageGroup" />,
+      render: (v) => <PreviewColumn src={v} name="图组" type="imageGroup" />,
     },
     {
       title: '简介',

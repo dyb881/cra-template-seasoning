@@ -12,7 +12,7 @@ export const createColumns = ({ edit, del }: any) => {
       title: '头像',
       dataIndex: 'avatar',
       width: 60,
-      render: (v, { title }: any) => <PreviewColumn src={v} name={title} />,
+      render: (v) => <PreviewColumn src={v} name="头像" />,
     },
     { title: '用户名', dataIndex: 'username', width: 120 },
     { title: '昵称', dataIndex: 'nickname', width: 160 },

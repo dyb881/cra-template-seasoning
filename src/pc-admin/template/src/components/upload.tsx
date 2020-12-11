@@ -31,10 +31,13 @@ export const UploadProps = combine<{
     action: uploadFile.getUploadUrl(type),
     headers: { Authorization },
     onPreview,
-    transformFile: async (file: File) => {
-      const base64 = await fileToBase64(file, 1024);
-      return base64ToFile(base64);
-    },
+    transformFile:
+      type !== 'image'
+        ? undefined
+        : async (file: File) => {
+            const base64 = await fileToBase64(file, 1024);
+            return base64ToFile(base64);
+          },
   });
 });
 

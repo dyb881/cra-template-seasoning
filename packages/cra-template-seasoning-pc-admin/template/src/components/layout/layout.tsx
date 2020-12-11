@@ -1,12 +1,12 @@
 import React, { useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { ConfigProvider, Layout as LayoutSource, Avatar, Tooltip, BackTop } from 'antd';
+import { ConfigProvider, Layout as LayoutSource, Avatar, Tooltip, BackTop, Space } from 'antd';
 import { PoweroffOutlined, MobileOutlined } from '@ant-design/icons';
 import { MenuNav, Dropdown } from 'common/antd';
 import { menuData } from 'common/menu';
 import { defaultTitle } from 'common/router';
 import { combine } from 'stores';
-import { Interval, Fullscreen, MenuSwitch } from './common';
+import { Fullscreen, MenuSwitch } from './common';
 import { Setting } from './setting';
 import { RouterBreadcrumb } from './router_component';
 import { Preview } from './preview';
@@ -78,11 +78,11 @@ export const Layout: React.FC = combine(({ stores, children }) => {
             })}
           >
             <div className="between-center">
-              <Interval left>
+              <Space>
                 {(isMobile || hiddenMenu) && <img src={require('images/logo.svg')} alt="" className={style.logo} />}
                 {hiddenHeader || <MenuSwitch {...menuSwitchProps} />}
-              </Interval>
-              <Interval>
+              </Space>
+              <Space>
                 <Avatar src={avatar} size="small">
                   {username}
                 </Avatar>
@@ -96,7 +96,7 @@ export const Layout: React.FC = combine(({ stores, children }) => {
                 <Tooltip placement="bottom" title="注销">
                   <PoweroffOutlined className="pointer" onClick={user.logoutConfirm} />
                 </Tooltip>
-              </Interval>
+              </Space>
               {hiddenHeader && (
                 <div
                   className={`transition ${style.showHeader}`}
