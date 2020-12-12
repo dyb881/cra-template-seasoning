@@ -37,7 +37,8 @@ export const createColumns = ({ del }: any) => {
         </Text>
       ),
     },
-    { title: '文件类型', dataIndex: 'type', width: 90, render: (v?: TTypeKeys) => options.type[v!] },
+    { title: '文件类型', dataIndex: 'type', width: 90, render: (v: keyof typeof options.type) => options.type[v!] },
+    { title: '储存方式', dataIndex: 'store', width: 90, render: (v: keyof typeof options.store) => options.store[v!] },
     { title: '文件大小', dataIndex: 'size', width: 120 },
     { title: '上传帐号', dataIndex: 'username', width: 120 },
     { title: '上传时间', dataIndex: 'create_date', width: 180 },
@@ -59,6 +60,5 @@ export const createColumns = ({ del }: any) => {
 
 export const options = {
   type: { image: '图片', video: '视频', audio: '音频', other: '其他' },
+  store: { local: '本地储存', oss: 'OSS' },
 };
-
-type TTypeKeys = keyof typeof options.type;
