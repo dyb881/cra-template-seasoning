@@ -10,7 +10,7 @@
 
 ## 使用方法
 
-[管理后台模版 DEMO](http://nest.bittyshow.top)，对应服务端代码[nest-serve](https://github.com/dyb881/nest-serve)
+[管理后台模版 DEMO](http://nest.bittyshow.top)，admin/admin，对应服务端代码[nest-serve](https://github.com/dyb881/nest-serve)
 
 ```sh
 npx create-react-app my-app --template seasoning // 默认模版
