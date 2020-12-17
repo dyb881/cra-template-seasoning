@@ -13,15 +13,13 @@ const App = combine(({ stores }) => {
     autoLogin();
   }, []);
 
+  if (showLogin) return <Login />;
+
   return (
     <Router>
-      {showLogin ? (
-        <Login />
-      ) : (
-        <Layout>
-          <Pages />
-        </Layout>
-      )}
+      <Layout>
+        <Pages />
+      </Layout>
     </Router>
   );
 });

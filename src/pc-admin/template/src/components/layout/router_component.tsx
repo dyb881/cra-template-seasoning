@@ -33,7 +33,7 @@ export const RouterBreadcrumb: React.FC<Partial<TBreadcrumbProps>> = ({ ...props
   const { pathname } = useLocation();
 
   const data = useMemo(() => {
-    const datas = getMenuNavDatas(menuData, pathname).map((i) => ({ to: i.to, children: i.title }));
+    const datas = getMenuNavDatas(menuData, pathname).map((i) => ({ to: i.path, children: i.title }));
     const endKey = datas.length - 1;
     if (datas[endKey]) datas[endKey].to = undefined; // 最后一个不需要跳转
     return datas;

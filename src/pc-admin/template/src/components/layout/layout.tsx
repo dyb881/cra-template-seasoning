@@ -41,11 +41,7 @@ export const Layout: React.FC = combine(({ stores, children }) => {
   const backTopPosition = isMobile ? 20 : 50;
 
   return (
-    <ConfigProvider
-      locale={zh_CN}
-      componentSize={isMobile ? 'small' : componentSize}
-      getPopupContainer={() => box.current || document.body}
-    >
+    <ConfigProvider locale={zh_CN} componentSize={isMobile ? 'small' : componentSize}>
       <LayoutSource className={classNames('fill', style[componentSize])}>
         <Sider
           className={classNames(style.sider, { [style.hidden]: (isMobile || hiddenMenu) && !collapsed })}
@@ -93,7 +89,7 @@ export const Layout: React.FC = combine(({ stores, children }) => {
                 </Dropdown>
                 <Fullscreen />
                 <Setting />
-                <Tooltip placement="bottom" title="注销">
+                <Tooltip placement="leftTop" title="注销">
                   <PoweroffOutlined className="pointer" onClick={user.logoutConfirm} />
                 </Tooltip>
               </Space>
@@ -109,13 +105,15 @@ export const Layout: React.FC = combine(({ stores, children }) => {
             </div>
           </Header>
           <Content className={style.content}>
-            <div className="page" ref={box}>
-              <RouterBreadcrumb />
-              {children}
-              {box.current && (
-                <BackTop target={() => box.current!} style={{ right: backTopPosition, bottom: backTopPosition }} />
-              )}
-            </div>
+            <ConfigProvider getPopupContainer={() => box.current || document.body}>
+              <div className="page" ref={box}>
+                <RouterBreadcrumb />
+                {children}
+                {box.current && (
+                  <BackTop target={() => box.current!} style={{ right: backTopPosition, bottom: backTopPosition }} />
+                )}
+              </div>
+            </ConfigProvider>
           </Content>
         </LayoutSource>
         <Preview />
