@@ -27,7 +27,7 @@ export const PageForm = forwardRef<TForm, TPageFormProps>(
         <RouterPageHeader onBack={onBack} extra={extra} />
         <FormLayout name="pageForm" {...{ form, maxWidth, cols }} {...props}>
           {children}
-          <FormButtons formItemProps={{ wrapperCol: { span, offset } }}>
+          <FormButtons formItemProps={{ wrapperCol: { offset, span } }}>
             <Space>
               <Button type="primary" icon={<SaveOutlined />} htmlType="submit">
                 保存

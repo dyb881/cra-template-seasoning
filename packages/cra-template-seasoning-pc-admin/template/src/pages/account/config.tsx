@@ -25,7 +25,7 @@ export const createColumns = ({ edit, del }: any) => {
       dataIndex: 'type',
       width: 90,
       fixed: 'right',
-      render: (v?: TTypeKeys) => renders.type[v!],
+      render: (v: keyof typeof renders.type) => renders.type[v],
     },
     { title: '状态', dataIndex: 'status', width: 90, fixed: 'right', render: (v) => renders.status[v] },
     {
@@ -65,5 +65,3 @@ export const renders = {
     <Badge status="error" text="冻结" />,
   ],
 };
-
-export type TTypeKeys = keyof typeof renders.type;

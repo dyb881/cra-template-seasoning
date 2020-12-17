@@ -38,9 +38,11 @@ export const Search: React.FC<SearchProps> = (props) => <InputSource.Search maxL
 /**
  * 数字文本框
  */
-export const InputNumber: React.FC<InputNumberProps> = (props) => (
-  <InputNumberSource step={1} precision={0} {...props} />
-);
+export const InputNumber: React.FC<InputNumberProps> = ({
+  step = 1,
+  precision = ('' + step).split('.')[1]?.length || 0,
+  ...props
+}) => <InputNumberSource step={step} precision={precision} {...props} />;
 
 export type TAutoCompleteProps = Omit<AutoCompleteProps, 'options'> & {
   options?: string[];

@@ -1,5 +1,5 @@
 import React, { useCallback, forwardRef, useImperativeHandle, useMemo, useEffect, useRef } from 'react';
-import { Table, Space } from 'antd';
+import { Table, Space, Popover, Typography, message } from 'antd';
 import { FormProps } from 'antd/es/form';
 import { TableProps, ColumnsType, ColumnGroupType } from 'antd/es/table';
 import { SearchOutlined, UndoOutlined } from '@ant-design/icons';
@@ -84,7 +84,33 @@ export const TableMobile = combine<TTableMobileProps>(
     const x = useMemo(() => toScrollX(columns) + widthAddition, [columns.length, widthAddition]);
 
     // 移动端访问过滤浮动列
-    const mergedColumns = isMobile ? columns.map(({ fixed, ...column }) => column) : columns;
+    const mergedColumns = isMobile
+      ? columns.map(({ fixed, ...column }) => column)
+      : columns.map((i) => {
+          if (i.ellipsis && !i.render) {
+            i.render = (v) => {
+              return (
+                v && (
+                  <Popover
+                    content={<pre style={{ maxHeight: 600, overflow: 'auto' }}>{v}</pre>}
+                    title={i.title}
+                    placement="topLeft"
+                  >
+                    <Typography.Text
+                      className="pointer"
+                      style={{ width: '100%' }}
+                      ellipsis
+                      copyable={{ text: v, onCopy: () => message.success('拷贝成功') }}
+                    >
+                      {v}
+                    </Typography.Text>
+                  </Popover>
+                )
+              );
+            };
+          }
+          return i;
+        });
 
     const tableProps: TTableMobileProps = {
       dataSource,

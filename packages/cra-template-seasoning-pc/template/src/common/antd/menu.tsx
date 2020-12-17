@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Menu as MenuSource } from 'antd';
 import { MenuProps } from 'antd/es/menu';
 
@@ -19,7 +19,7 @@ export type TMenuProps = Omit<MenuProps, 'onOpenChange'> & {
  * 导航菜单
  * 根据配置，可无限生成子菜单
  */
-export const Menu: React.FC<TMenuProps> = ({
+export const Menu: FC<TMenuProps> = ({
   data,
   onClickItem,
   onClick,
@@ -52,26 +52,26 @@ export const Menu: React.FC<TMenuProps> = ({
   );
 };
 
+const MenuItemTitle: FC<TMenuData> = ({ icon, title }) => (
+  <>
+    {icon}
+    <span>{title}</span>
+  </>
+);
+
 /**
  * 递归生成子菜单
  */
 const menuTree = (data: TMenuData[], prefix = 'key') => {
   return data.map((i, k) => {
-    const { title, icon, children } = i;
     const key = `${prefix}-${k}`;
-    const menuItemTitle = (
-      <>
-        {icon}
-        <span>{title}</span>
-      </>
-    );
-    return children?.length ? (
-      <MenuSource.SubMenu key={key} title={menuItemTitle}>
-        {menuTree(children, key)}
+    return i.children?.length ? (
+      <MenuSource.SubMenu key={key} title={<MenuItemTitle {...i} />}>
+        {menuTree(i.children, key)}
       </MenuSource.SubMenu>
     ) : (
       <MenuSource.Item key={key} data-info={i}>
-        {menuItemTitle}
+        <MenuItemTitle {...i} />
       </MenuSource.Item>
     );
   });

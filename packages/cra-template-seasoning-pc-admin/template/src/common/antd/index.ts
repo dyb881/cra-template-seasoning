@@ -6,6 +6,7 @@ export * from './select';
 export * from './checkbox';
 export * from './radio';
 export * from './upload';
+export * from './sliderNumber';
 
 /**
  * 功能项
