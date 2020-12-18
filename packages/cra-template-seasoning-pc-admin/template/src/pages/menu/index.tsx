@@ -3,7 +3,7 @@ import { FormItem, Select } from 'common/antd';
 import { useTable, PageTable, FormSearch } from 'components';
 import { createColumns, options } from './config';
 import { useInfo } from './info_modal';
-import { toThree } from 'utils';
+import { toThree } from './select';
 import { menu } from 'apis';
 
 const Page = () => {

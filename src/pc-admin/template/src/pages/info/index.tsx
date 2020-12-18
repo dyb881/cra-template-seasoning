@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import { FormItem, Select } from 'common/antd';
-import { useTable, PageTable, FormSearch, SelectMenu } from 'components';
+import { useTable, PageTable, FormSearch } from 'components';
 import { options, createColumns } from './config';
 import { menu, info } from 'apis';
+import { SelectMenu } from '../menu/select';
 
 const Page = () => {
   const { states, setStates, setData, pageTableProps, formSearchProps, del, DelButton } = useTable({

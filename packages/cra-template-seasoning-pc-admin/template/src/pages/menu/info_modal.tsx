@@ -1,7 +1,8 @@
 import React from 'react';
 import { FormItem, Radio, TextArea, InputNumber } from 'common/antd';
-import { RouterTitle, FormModal, useInfoModal, SelectMenu, UploadInput } from 'components';
+import { RouterTitle, FormModal, useInfoModal, UploadInput } from 'components';
 import { options } from './config';
+import { SelectMenu } from './select';
 import { menu } from 'apis';
 
 export const useInfo = (getList: () => void) => {

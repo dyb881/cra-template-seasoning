@@ -60,7 +60,7 @@ export const createColumns = ({ del, menuData = {} }: any) => {
       fixed: 'right',
       render: (data) => (
         <Action>
-          <Link className="edit" to={`/info/info/${data.id}`}>
+          <Link className="edit pointer" to={`/info/info/${data.id}`}>
             编辑
           </Link>
           <span className="delete pointer" onClick={() => del([data.id])}>
