@@ -1,4 +1,3 @@
-import React from 'react';
 import { UserOutlined, FolderFilled, UnorderedListOutlined, SettingOutlined } from '@ant-design/icons';
 import { TMenuNavData } from './antd';
 

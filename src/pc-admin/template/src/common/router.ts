@@ -6,7 +6,7 @@ import { getMenuNavDataRouters } from './antd';
 /**
  * 默认标题
  */
-export const defaultTitle = 'Seasoning-App';
+export const defaultTitle = 'Seasoning-Admin';
 
 /**
  * 写入标题
@@ -39,6 +39,6 @@ export const { history, Pages, Router } = new RouterPages({
   }),
   // 监听路由变动
   listen: ({ title }) => {
-    setTitle(title);
+    setTitle(`${title} - ${defaultTitle}`);
   },
 });
