@@ -3,7 +3,7 @@ import { message } from 'antd';
 import { FormItem, Password, Radio } from 'common/antd';
 import { PageForm, useInfo, UploadInput } from 'components';
 import { combinePage } from 'stores';
-import { options, renders, TTypeKeys } from '../account/config';
+import { options, renders } from '../account/config';
 import { account } from 'apis';
 
 const Page = combinePage(({ stores }) => {
@@ -33,7 +33,7 @@ const Page = combinePage(({ stores }) => {
         <UploadInput />
       </FormItem>
       <FormItem key="edit" label="用户名">
-        {renders.type[data.type as TTypeKeys]}
+        {renders.type[data.type as keyof typeof options.type]}
         {data.username}
       </FormItem>
       <FormItem label="密码" name="password" placeholder={'为空则不修改密码'}>

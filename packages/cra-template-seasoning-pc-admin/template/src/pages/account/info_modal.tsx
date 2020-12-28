@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormItem, Radio, Password } from 'common/antd';
 import { RouterTitle, FormModal, useInfoModal, UploadInput } from 'components';
-import { options, renders, TTypeKeys } from './config';
+import { options, renders } from './config';
 import { account } from 'apis';
 
 export const useInfo = (getList: () => void, onOk: (username: string) => void) => {
@@ -23,7 +23,7 @@ export const useInfo = (getList: () => void, onOk: (username: string) => void) =
       </FormItem>
       {isEdit ? (
         <FormItem key="edit" label="用户名">
-          {renders.type[data.type as TTypeKeys]}
+          {renders.type[data.type as keyof typeof options.type]}
           {data.username}
         </FormItem>
       ) : (
