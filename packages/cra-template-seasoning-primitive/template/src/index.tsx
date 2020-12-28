@@ -1,1 +1,3 @@
-console.log('web');
+import { user } from 'apis';
+
+user.login({});
