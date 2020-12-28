@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { Menu as MenuSource } from 'antd';
 import { MenuProps } from 'antd/es/menu';
 

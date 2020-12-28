@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { PageHeader } from 'antd';
 import { PageHeaderProps } from 'antd/es/page-header';

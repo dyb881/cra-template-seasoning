@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useCallback } from 'react';
+import { useEffect, useMemo, useCallback } from 'react';
 import { useLocation, useHistory, matchPath } from 'react-router-dom';
 import { Menu, TMenuData, TMenuProps } from './menu';
 import { TRouter } from '../router';

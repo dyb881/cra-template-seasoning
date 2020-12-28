@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, FC } from 'react';
 import { Modal, Tooltip, Button, Pagination, Space, Divider, ConfigProvider, Image } from 'antd';
 import {
   FullscreenOutlined,
@@ -30,7 +30,7 @@ export type TMenuSwitchProps = {
 /**
  * 菜单开关按钮
  */
-export const MenuSwitch: React.FC<TMenuSwitchProps> = ({ open, onClick, className, style }) => {
+export const MenuSwitch: FC<TMenuSwitchProps> = ({ open, onClick, className, style }) => {
   return React.cloneElement(open ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />, {
     onClick,
     className: classNames('pointer', className),
@@ -47,11 +47,7 @@ export type TFullscreenProps = {
 /**
  * 全屏按钮
  */
-export const Fullscreen: React.FC<TFullscreenProps> = ({
-  getElement = () => document.documentElement,
-  className,
-  style,
-}) => {
+export const Fullscreen: FC<TFullscreenProps> = ({ getElement = () => document.documentElement, className, style }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const s = screenfull as Screenfull;
 
@@ -82,7 +78,7 @@ export const Fullscreen: React.FC<TFullscreenProps> = ({
 /**
  * 加载中
  */
-export const Loading: React.FC<TSpinProps> = ({ loading, ...props }) => {
+export const Loading: FC<TSpinProps> = ({ loading, ...props }) => {
   if (!loading) return null;
 
   return (
@@ -95,7 +91,7 @@ export const Loading: React.FC<TSpinProps> = ({ loading, ...props }) => {
 /**
  * 图片组件
  */
-export const Img: React.FC<TImgProps & Pick<ImageProps, 'preview'>> = ({ preview = false, onClick, ...props }) => {
+export const Img: FC<TImgProps & Pick<ImageProps, 'preview'>> = ({ preview = false, onClick, ...props }) => {
   return (
     <ImgSource
       loadingTip={<LoadingOutlined />}
@@ -165,4 +161,4 @@ export const PaginationMobile = combine<PaginationProps>(({ stores, onChange, ..
 /**
  * 动作组件，自动添加分割线
  */
-export const Action: React.FC = ({ children }) => <Space split={<Divider type="vertical" />}>{children}</Space>;
+export const Action: FC = ({ children }) => <Space split={<Divider type="vertical" />}>{children}</Space>;

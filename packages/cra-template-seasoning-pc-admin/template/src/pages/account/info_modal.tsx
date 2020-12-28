@@ -1,6 +1,6 @@
-import React from 'react';
 import { FormItem, Radio, Password } from 'common/antd';
-import { RouterTitle, FormModal, useInfoModal, UploadInput } from 'components';
+import { RouterTitle, FormModal, useInfoModal } from 'components';
+import { UploadInput } from 'pages/uploadFile/upload';
 import { options, renders } from './config';
 import { account } from 'apis';
 

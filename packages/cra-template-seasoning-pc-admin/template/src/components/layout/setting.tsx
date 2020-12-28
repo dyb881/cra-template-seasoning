@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { ConfigProvider, Drawer, Switch, Tooltip } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import { Form, FormItem, RadioButton, InputNumber } from 'common/antd';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Spin as SpinSource } from 'antd';
 import { SpinProps } from 'antd/es/spin';
 

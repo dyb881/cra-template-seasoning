@@ -22,6 +22,7 @@
     "format": "prettier --write \"**/*.{ts,js,json,md}\"",
     "format:check": "prettier --debug-check \"**/*.{ts,js,json,md}\"",
     "to:packages": "node ./src/to.packages.js",
+    "to": "node ./src/to.packages.js",
     "deploy": "gh-pages -d demo"
   },
   "husky": {

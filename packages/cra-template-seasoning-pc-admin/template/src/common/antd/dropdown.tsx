@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dropdown as DropdownSource } from 'antd';
 import { DropDownProps, DropdownButtonProps } from 'antd/es/dropdown';
 import { Menu, TMenuProps } from './menu';

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useCallback, useMemo } from 'react';
+import { FC, useState, useEffect, useCallback, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Checkbox, Popover, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/es/table/interface';

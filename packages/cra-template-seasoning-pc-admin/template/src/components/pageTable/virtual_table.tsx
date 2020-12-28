@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { Table } from 'antd';
 import { TableProps } from 'antd/es/table';
 import { VariableSizeGrid } from 'react-window';

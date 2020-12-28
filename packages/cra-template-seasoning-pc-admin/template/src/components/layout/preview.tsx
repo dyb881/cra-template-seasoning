@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Modal, Carousel } from 'antd';
 import { VideoCameraOutlined, AudioOutlined, DownloadOutlined } from '@ant-design/icons';
 import { useStates } from 'seasoning/es/hooks';

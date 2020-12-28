@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Upload as UploadSource } from 'antd';
 import { UploadProps, DraggerProps } from 'antd/es/upload';
 import { PlusOutlined, LoadingOutlined, InboxOutlined } from '@ant-design/icons';

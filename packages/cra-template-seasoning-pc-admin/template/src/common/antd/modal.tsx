@@ -1,4 +1,3 @@
-import React from 'react';
 import { Modal } from 'antd';
 import { ModalFuncProps } from 'antd/es/modal';
 import { ExclamationCircleOutlined } from '@ant-design/icons';

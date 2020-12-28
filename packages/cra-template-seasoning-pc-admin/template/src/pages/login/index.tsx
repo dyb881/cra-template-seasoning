@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Form, FormItem, Password } from 'common/antd';

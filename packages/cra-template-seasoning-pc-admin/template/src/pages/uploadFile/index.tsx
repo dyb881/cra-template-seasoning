@@ -1,10 +1,11 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { Drawer } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { FormItem, Select } from 'common/antd';
-import { useTable, PageTable, FormSearch, ButtonMobile, UploadDragger } from 'components';
+import { useTable, PageTable, FormSearch, ButtonMobile } from 'components';
 import { options, createColumns } from './config';
 import { uploadFile } from 'apis';
+import { UploadDragger } from './upload';
 
 const Page = () => {
   const [visible, setVisible] = useState(false);

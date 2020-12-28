@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Checkbox as CheckboxSource, Tag } from 'antd';
 import { CheckboxGroupProps, CheckboxOptionType } from 'antd/es/checkbox';
 import { CheckableTagProps } from 'antd/es/tag/CheckableTag';
