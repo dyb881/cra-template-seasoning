@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { ConfigProvider, Layout as LayoutSource, Avatar, Tooltip, BackTop, Space } from 'antd';
 import { PoweroffOutlined, MobileOutlined } from '@ant-design/icons';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { PreviewColumn } from 'components';

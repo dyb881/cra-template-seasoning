@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, FC } from 'react';
 import { message } from 'antd';
 import { DraggerProps } from 'antd/es/upload';
 import { UploadFile } from 'antd/es/upload/interface';
@@ -44,7 +44,7 @@ export const UploadProps = combine<{
 /**
  * 拖拽上传
  */
-export const UploadDragger: React.FC<DraggerProps> = ({ onChange, ...props }) => {
+export const UploadDragger: FC<DraggerProps> = ({ onChange, ...props }) => {
   return (
     <UploadProps>
       <UploadDraggerSource
@@ -71,7 +71,7 @@ export type TUploadInputProps = Omit<TUploadProps, 'onChange'> & TInputNotRequir
 /**
  * 文件上传表单组件
  */
-export const UploadInput: React.FC<TUploadInputProps> = ({ max = 1, value = [], onChange, ...props }) => {
+export const UploadInput: FC<TUploadInputProps> = ({ max = 1, value = [], onChange, ...props }) => {
   const [fileList, setFileList] = useState<any[]>([]);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { FormItem, Select, Radio } from 'common/antd';
 import { useTable, PageTable, FormSearch } from 'components';
 import { combine } from 'stores';

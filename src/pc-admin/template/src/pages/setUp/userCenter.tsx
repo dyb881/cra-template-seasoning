@@ -1,9 +1,9 @@
-import React from 'react';
 import { message } from 'antd';
 import { FormItem, Password, Radio } from 'common/antd';
-import { PageForm, useInfo, UploadInput } from 'components';
+import { PageForm, useInfo } from 'components';
 import { combinePage } from 'stores';
-import { options, renders } from '../account/config';
+import { UploadInput } from 'pages/uploadFile/upload';
+import { options, renders } from 'pages/account/config';
 import { account } from 'apis';
 
 const Page = combinePage(({ stores }) => {

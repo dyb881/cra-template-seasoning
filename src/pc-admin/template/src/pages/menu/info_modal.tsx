@@ -1,6 +1,6 @@
-import React from 'react';
 import { FormItem, Radio, TextArea, InputNumber } from 'common/antd';
-import { RouterTitle, FormModal, useInfoModal, UploadInput } from 'components';
+import { RouterTitle, FormModal, useInfoModal } from 'components';
+import { UploadInput } from 'pages/uploadFile/upload';
 import { options } from './config';
 import { SelectMenu } from './select';
 import { menu } from 'apis';

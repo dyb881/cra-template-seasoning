@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { TreeSelect, TTreeSelectProps } from 'common/antd';
 import { combine } from 'stores';
 import { menu } from 'apis';

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Select as SelectSource, TreeSelect as TreeSelectSource } from 'antd';
 import { SelectProps, SelectValue } from 'antd/es/select';
 import { TreeSelectProps } from 'antd/es/tree-select';

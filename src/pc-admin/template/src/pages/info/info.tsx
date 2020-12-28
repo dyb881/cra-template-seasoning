@@ -1,11 +1,11 @@
-import React from 'react';
 import { message } from 'antd';
 import { FormItem, Radio, InputNumber, TextArea } from 'common/antd';
-import { PageForm, useInfo, UploadInput } from 'components';
+import { PageForm, useInfo } from 'components';
 import { combinePage } from 'stores';
+import { UploadInput } from 'pages/uploadFile/upload';
 import { options } from './config';
+import { SelectMenu } from 'pages/menu/select';
 import { info } from 'apis';
-import { SelectMenu } from '../menu/select';
 
 type TParams = { id?: string };
 

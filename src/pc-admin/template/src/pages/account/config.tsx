@@ -1,4 +1,3 @@
-import React from 'react';
 import { Tag, Badge } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { Action, PreviewColumn } from 'components';

@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { Radio as RadioSource } from 'antd';
 import { RadioGroupProps } from 'antd/es/radio';
 import { CheckboxOptionType } from 'antd/es/checkbox';

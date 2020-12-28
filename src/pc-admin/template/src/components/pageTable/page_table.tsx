@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Tooltip, Space } from 'antd';
 import { PaginationProps } from 'antd/es/pagination';
@@ -20,7 +19,7 @@ export type TPageTableProps = Pick<TSpinProps, 'loading'> &
 /**
  * 表格页
  */
-export const PageTable: FC<TPageTableProps> = ({
+export const PageTable: React.FC<TPageTableProps> = ({
   loading,
   onBack,
   extra,
