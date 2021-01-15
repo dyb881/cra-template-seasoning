@@ -10,8 +10,6 @@
 
 ## 使用方法
 
-[管理后台模版 DEMO](http://nest.bittyshow.top)，admin/admin，对应服务端代码[nest-serve](https://github.com/dyb881/nest-serve/tree/multirepo)
-
 ```sh
 npx create-react-app my-app --template seasoning // 默认模版
 npx create-react-app my-app --template seasoning-mobile // 移动端模版
