@@ -1,9 +1,7 @@
-import { useRef, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { useRef } from 'react';
 import { ConfigProvider, Layout as LayoutSource, Avatar, Tooltip, BackTop, Space } from 'antd';
 import { PoweroffOutlined, MobileOutlined } from '@ant-design/icons';
-import { MenuNav, Dropdown } from 'common/antd';
-import { menuData } from 'common/menu';
+import { MenuNav } from 'common/antd';
 import { defaultTitle } from 'common/router';
 import { combine } from 'stores';
 import { Fullscreen, MenuSwitch } from './common';
@@ -29,14 +27,14 @@ const { Sider, Header, Content } = LayoutSource;
 export const Layout: React.FC = combine(({ stores, children }) => {
   const box = useRef(null);
   const { layout, view, user } = stores;
-  const { avatar, username = '未登录' } = user.info;
+  const { avatar, nickname = '未登录' } = user.info.account || {};
   const { isMobile, collapsed, collapsedChange, showHeader, showHeaderChange, setting } = layout;
   const { theme, hiddenMenu, hiddenHeader, menuIconTop, headerIconRight, componentSize } = setting;
   const isCollapsed = !(isMobile || hiddenMenu) && collapsed;
   const menuSwitchProps = { open: (isMobile || hiddenMenu) !== collapsed, onClick: collapsedChange };
 
   // 清空表格页数据
-  const onClickItem = useCallback(() => view.setTableData('root'), []);
+  const onClickItem = () => view.setTableData('root');
 
   const backTopPosition = isMobile ? 20 : 50;
 
@@ -60,7 +58,8 @@ export const Layout: React.FC = combine(({ stores, children }) => {
             />
           )}
           <MenuNav
-            data={menuData}
+            key={`${user.info.id}-${user.menu.length}`}
+            data={user.menu}
             mode="inline"
             inlineCollapsed={isCollapsed}
             theme={theme}
@@ -80,13 +79,11 @@ export const Layout: React.FC = combine(({ stores, children }) => {
               </Space>
               <Space>
                 <Avatar src={avatar} size="small">
-                  {username}
+                  {nickname}
                 </Avatar>
-                <Dropdown data={[{ title: <Link to="/setUp/userCenter">个人中心</Link> }]}>
-                  <span style={{ fontSize: 14 }} className="pointer">
-                    {username}
-                  </span>
-                </Dropdown>
+                <span style={{ fontSize: 14 }} className="pointer">
+                  {nickname}
+                </span>
                 <Fullscreen />
                 <Setting />
                 <Tooltip placement="leftTop" title="注销">

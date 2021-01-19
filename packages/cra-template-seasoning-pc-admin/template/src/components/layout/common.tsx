@@ -1,5 +1,5 @@
 import React, { useState, useCallback, FC } from 'react';
-import { Modal, Tooltip, Button, Pagination, Space, Divider, ConfigProvider, Image } from 'antd';
+import { Modal, Tooltip, Button, Pagination, Space, Divider, ConfigProvider } from 'antd';
 import {
   FullscreenOutlined,
   FullscreenExitOutlined,
@@ -13,9 +13,7 @@ import { combine } from 'stores';
 import { FormProps } from 'antd/es/form';
 import { ButtonProps } from 'antd/es/button';
 import { PaginationProps } from 'antd/es/pagination';
-import { ImageProps } from 'antd/es/Image';
-import { Img as ImgSource } from 'seasoning';
-import { TImgProps } from 'seasoning/es/img';
+import ImgSource, { TImgProps } from 'seasoning/es/img';
 import screenfull, { Screenfull } from 'screenfull';
 import classNames from 'classnames';
 import style from './style.module.less';
@@ -91,20 +89,8 @@ export const Loading: FC<TSpinProps> = ({ loading, ...props }) => {
 /**
  * 图片组件
  */
-export const Img: FC<TImgProps & Pick<ImageProps, 'preview'>> = ({ preview = false, onClick, ...props }) => {
-  return (
-    <ImgSource
-      loadingTip={<LoadingOutlined />}
-      errorTip={<ReloadOutlined className="pointer" />}
-      onClick={preview ? undefined : onClick}
-      {...props}
-    >
-      {({ src, style: { width, height }, mode }) => {
-        if (mode?.includes('scaleToFill')) width = height = '100%';
-        return <Image {...{ src, width, height, preview }} />;
-      }}
-    </ImgSource>
-  );
+export const Img: FC<TImgProps> = (props) => {
+  return <ImgSource loadingTip={<LoadingOutlined />} errorTip={<ReloadOutlined className="pointer" />} {...props} />;
 };
 
 /**

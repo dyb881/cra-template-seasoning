@@ -1,7 +1,10 @@
 import { makeAutoObservable, when } from 'mobx';
 import { message } from 'antd';
+import { menuData } from 'common/menu';
 import { modalConfirm } from 'common/antd';
+import { history } from 'common/router';
 import { auth } from 'apis';
+import { cloneDeep, get } from 'lodash';
 
 /**
  * 用户
@@ -29,6 +32,7 @@ export default class User {
 
   access_token = localStorage.access_token;
   info: any = {};
+  menu: any[] = [];
   get Authorization() {
     return `Bearer ${this.access_token}`;
   }
@@ -41,6 +45,36 @@ export default class User {
   }
 
   /**
+   * 权限过滤菜单
+   */
+  permissionFilter(info: any) {
+    const { pathname } = history.location;
+    let isAvailable = false;
+    const permissionFilter = (data: any[]) => {
+      return data.filter((i) => {
+        if (i.children) i.children = permissionFilter(i.children);
+
+        // 子菜单为空
+        if (i.children && !i.children.length) return false;
+
+        // 如果有权限配置，则判断权限是否可用
+        if (i.permission) {
+          if (!get(info.role.permissions, i.permission)) return false;
+        }
+
+        // 存在当前路由
+        if (pathname === i.path) isAvailable = true;
+
+        return true;
+      });
+    };
+    const menu = permissionFilter(cloneDeep(menuData));
+    // 当前路由不可用，跳转到可用路由的第一个
+    isAvailable || history.push(menu[0].children[0].path);
+    this.menu = menu;
+  }
+
+  /**
    * 登录
    */
   login = async (values: any) => {
@@ -49,6 +83,7 @@ export default class User {
       const { access_token, ...info } = res.data;
       message.success('登录成功');
       Object.assign(localStorage, { access_token });
+      this.permissionFilter(info);
       Object.assign(this, { access_token, info, isLogin: true });
     }
   };
@@ -93,6 +128,7 @@ export default class User {
     const res = await auth.getInfo(`Bearer ${this.access_token}`);
     if (res.ok) {
       this.info = res.data;
+      this.permissionFilter(res.data);
       this.isLogin = true;
     }
     return res;

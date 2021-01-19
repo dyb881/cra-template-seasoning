@@ -7,14 +7,15 @@ import { RouterPageHeader, TRouterPageHeaderProps, Loading } from '../layout';
 import { FormLayout, TFormLayoutProps } from './common';
 
 export type TPageFormProps = Pick<TSpinProps, 'loading'> &
-  Pick<TRouterPageHeaderProps, 'onBack' | 'extra'> &
-  Partial<TFormLayoutProps>;
+  Pick<TRouterPageHeaderProps, 'onBack' | 'extra'> & {
+    headerChildren?: React.ReactNode;
+  } & Partial<TFormLayoutProps>;
 
 /**
  * 表格页
  */
 export const PageForm = forwardRef<TForm, TPageFormProps>(
-  ({ loading, onBack = true, extra, children, maxWidth = 750, cols = [3, 14], ...props }, ref) => {
+  ({ loading, onBack = true, extra, headerChildren, children, maxWidth = 750, cols = [3, 14], ...props }, ref) => {
     const formRef = useForm();
     const { form, reset } = formRef;
 
@@ -24,7 +25,7 @@ export const PageForm = forwardRef<TForm, TPageFormProps>(
 
     return (
       <>
-        <RouterPageHeader onBack={onBack} extra={extra} />
+        <RouterPageHeader onBack={onBack} extra={extra} children={headerChildren} />
         <FormLayout name="pageForm" {...{ form, maxWidth, cols }} {...props}>
           {children}
           <FormButtons formItemProps={{ wrapperCol: { offset, span } }}>
@@ -44,6 +45,6 @@ export const PageForm = forwardRef<TForm, TPageFormProps>(
   }
 );
 
-const FormButtons = combine<TFormItemProps>(({ stores, formItemProps, ...props }) => {
+export const FormButtons = combine<TFormItemProps>(({ stores, formItemProps, ...props }) => {
   return <FormItem formItemProps={stores.layout.isMobile ? undefined : formItemProps} {...props} />;
 });

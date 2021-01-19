@@ -1,6 +1,5 @@
 import { FormItem, Radio, Password } from 'common/antd';
-import { RouterTitle, FormModal, useInfoModal } from 'components';
-import { UploadInput } from 'pages/uploadFile/upload';
+import { RouterTitle, FormModal, useInfoModal, UploadPicture } from 'components';
 import { options, renders } from './config';
 import { account } from 'apis';
 
@@ -19,15 +18,15 @@ export const useInfo = (getList: () => void, onOk: (username: string) => void) =
   const modalForm = (
     <FormModal title={<RouterTitle before={isEdit ? '编辑' : '新建'} />} {...formModalProps}>
       <FormItem label="头像" name="avatar">
-        <UploadInput />
+        <UploadPicture />
       </FormItem>
       {isEdit ? (
-        <FormItem key="edit" label="用户名">
+        <FormItem label="用户名">
           {renders.type[data.type as keyof typeof options.type]}
           {data.username}
         </FormItem>
       ) : (
-        <FormItem key="add" label="用户名" name="username" placeholder required />
+        <FormItem label="用户名" name="username" placeholder required />
       )}
       <FormItem
         label="密码"
@@ -37,6 +36,7 @@ export const useInfo = (getList: () => void, onOk: (username: string) => void) =
       >
         <Password />
       </FormItem>
+      <FormItem label="手机号" name="phone" placeholder required />
       <FormItem label="昵称" name="nickname" placeholder required />
       {isEdit || (
         <FormItem label="帐号类型" name="type">

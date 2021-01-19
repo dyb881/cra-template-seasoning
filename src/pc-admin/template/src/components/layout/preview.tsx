@@ -36,7 +36,7 @@ export const Preview = combine(({ stores }) => {
       {(() => {
         switch (previewType) {
           case 'image':
-            return <Img src={src} style={{ width: '100%' }} />;
+            return <Img src={src} style={{ width: '100%', height: '60vh' }} mode="aspectFit" />;
           case 'video':
             return <video src={src} style={{ width: '100%' }} autoPlay controls />;
           case 'audio':
@@ -45,7 +45,7 @@ export const Preview = combine(({ stores }) => {
             return (
               <Carousel dotPosition="top" autoplay>
                 {[...src].map((i) => (
-                  <Img key={i} style={{ width: '100%' }} src={i} />
+                  <Img key={i} src={i} style={{ width: '100%', height: '60vh' }} mode="aspectFit" />
                 ))}
               </Carousel>
             );

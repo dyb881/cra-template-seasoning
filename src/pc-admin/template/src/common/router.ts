@@ -6,7 +6,7 @@ import { getMenuNavDataRouters } from './antd';
 /**
  * 默认标题
  */
-export const defaultTitle = 'Seasoning-Admin';
+export const defaultTitle = 'Nest-Admin';
 
 /**
  * 写入标题

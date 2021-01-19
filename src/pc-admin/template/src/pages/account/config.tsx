@@ -1,24 +1,27 @@
 import { Tag, Badge } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { Action, PreviewColumn } from 'components';
+import { pick } from 'lodash';
 
 /**
  * 生成表格配置数据
  */
 export const createColumns = ({ edit, del }: any) => {
   const columns: ColumnsType = [
+    { title: '用户名', dataIndex: 'username', width: 120, fixed: 'left' },
+    { title: '昵称', dataIndex: 'nickname', width: 160 },
+    { title: '手机号', dataIndex: 'phone', width: 160 },
     {
       title: '头像',
       dataIndex: 'avatar',
       width: 60,
       render: (v) => <PreviewColumn src={v} name="头像" />,
     },
-    { title: '用户名', dataIndex: 'username', width: 120 },
-    { title: '昵称', dataIndex: 'nickname', width: 160 },
     { title: '注册IP', dataIndex: 'reg_ip', width: 160 },
     { title: '登陆IP', dataIndex: 'login_ip', width: 160 },
-    { title: '注册时间', dataIndex: 'create_date', width: 180 },
     { title: '登陆时间', dataIndex: 'login_date', width: 180 },
+    { title: '注册时间', dataIndex: 'create_date', width: 180 },
+    { title: '更新时间', dataIndex: 'update_date', width: 180 },
     {
       title: '帐号类型',
       dataIndex: 'type',
@@ -63,4 +66,10 @@ export const renders = {
     <Badge status="success" text="已审核" />,
     <Badge status="error" text="冻结" />,
   ],
+};
+
+const accountFormNames = ['avatar', 'username', 'phone', 'nickname', 'status'];
+
+export const getAccountFormData = (data: any) => {
+  return { ...data, ...pick(data.account, accountFormNames) };
 };

@@ -40,7 +40,7 @@ export const Search: React.FC<SearchProps> = (props) => <InputSource.Search maxL
  */
 export const InputNumber: React.FC<InputNumberProps> = ({
   step = 1,
-  precision = ('' + step).split('.')[1]?.length || 0,
+  precision = String(step).split('.')[1]?.length || 0,
   ...props
 }) => <InputNumberSource step={step} precision={precision} {...props} />;
 
