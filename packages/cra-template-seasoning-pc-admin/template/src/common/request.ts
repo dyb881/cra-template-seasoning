@@ -12,7 +12,7 @@ export const isProduction = window.location.protocol === 'https:';
 /**
  * 生产地址
  */
-export let host = 'http://localhost:3010';
+export let host = 'https://localhost:3010';
 
 /**
  * 测试地址

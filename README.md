@@ -10,12 +10,14 @@
 
 ## 使用方法
 
+pc-admin 有配套后端服务[nest-serve](https://github.com/dyb881/nest-serve)，配合可直接使用
+
 ```sh
 npx create-react-app my-app --template seasoning // 默认模版
 npx create-react-app my-app --template seasoning-mobile // 移动端模版
 npx create-react-app my-app --template seasoning-mobile-tabbar // 移动端模版，带上 tabbar
 npx create-react-app my-app --template seasoning-pc // PC端模版
-npx create-react-app my-app --template seasoning-pc-admin // PC端模版，管理后台模版，账号密码都是 admin
+npx create-react-app my-app --template seasoning-pc-admin // PC端模版，带权限控制的管理后台模版
 npx create-react-app my-app --template seasoning-primitive // 原生开发模版
 ```
 
