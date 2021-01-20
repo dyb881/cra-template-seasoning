@@ -12,12 +12,12 @@ export const isProduction = window.location.protocol === 'https:';
 /**
  * 生产地址
  */
-export let host = 'http://101.200.80.178:3010';
+export let host = 'http://localhost:3010';
 
 /**
  * 测试地址
  */
-const hostTest = 'http://101.200.80.178:3010';
+const hostTest = 'http://localhost:3010';
 
 /**
  * 会根据 isProduction 自行变动，需要配置对应的生产和测试地址
