@@ -50,17 +50,17 @@ yarn serve // 运行静态文件服务器，并指向 build 文件夹
 
 ## pc-admin 效果图
 
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-1.png)
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-2.png)
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-3.png)
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-4.png)
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-5.png)
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-6.png)
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-7.png)
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-8.png)
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-9.png)
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-10.png)
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-11.png)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-1.png?v=1)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-2.png?v=1)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-3.png?v=1)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-4.png?v=1)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-5.png?v=1)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-6.png?v=1)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-7.png?v=1)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-8.png?v=1)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-9.png?v=1)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-10.png?v=1)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-11.png?v=1)
 
 ## 如果觉得项目还不错，请打赏一波，您的支持是我最大的动力。
 
