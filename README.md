@@ -17,7 +17,7 @@ npx create-react-app my-app --template seasoning // 默认模版
 npx create-react-app my-app --template seasoning-mobile // 移动端模版
 npx create-react-app my-app --template seasoning-mobile-tabbar // 移动端模版，带上 tabbar
 npx create-react-app my-app --template seasoning-pc // PC端模版
-npx create-react-app my-app --template seasoning-pc-admin // PC端模版，带权限控制的管理后台模版
+npx create-react-app my-app --template seasoning-pc-admin // PC端模版（兼容移动端），带权限控制的管理后台模版
 npx create-react-app my-app --template seasoning-primitive // 原生开发模版
 ```
 
@@ -48,7 +48,7 @@ yarn serve // 运行静态文件服务器，并指向 build 文件夹
 - App.tsx - 页面入口，除了布局组件的插入，一般不会变动
 - react-app-env.d.ts - 全局类型声明
 
-## pc-admin 效果图
+## pc-admin 效果图（兼容移动端）
 
 ![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-1.png)
 ![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-2.png)
@@ -61,6 +61,8 @@ yarn serve // 运行静态文件服务器，并指向 build 文件夹
 ![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-9.png)
 ![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-10.png)
 ![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-11.png)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-12.png)
+![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/github/nest-serve-13.png)
 
 ## 如果觉得项目还不错，请打赏一波，您的支持是我最大的动力。
 
