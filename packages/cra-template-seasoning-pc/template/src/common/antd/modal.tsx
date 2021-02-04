@@ -6,7 +6,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
  * 确认对话框
  */
 export const modalConfirm = (funcProps: ModalFuncProps) => {
-  Modal.confirm({ icon: <ExclamationCircleOutlined />, ...funcProps });
+  return Modal.confirm({ icon: <ExclamationCircleOutlined />, ...funcProps });
 };
 
 /**
@@ -14,12 +14,11 @@ export const modalConfirm = (funcProps: ModalFuncProps) => {
  */
 export const createModal = (funcProps?: ModalFuncProps) => {
   return <T extends any[]>(fun: (...arg: T) => void | Promise<void>) => {
-    return (...arg: T) => {
+    return (...arg: T) =>
       modalConfirm({
         onOk: () => fun(...arg),
         ...funcProps,
       });
-    };
   };
 };
 
