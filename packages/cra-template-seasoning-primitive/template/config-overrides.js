@@ -1,4 +1,5 @@
 const { override, addWebpackPlugin, fixBabelImports, addBabelPlugin, addLessLoader } = require('customize-cra');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 const modifyVars = {
   '@s-p': '#1890ff', // 全局主色
@@ -21,6 +22,9 @@ module.exports = override(
 
   fixBabelImports('lodash', { libraryDirectory: '', camel2DashComponentName: false }),
   fixBabelImports('seasoning', { libraryDirectory: 'es' }),
+
+  // 提供编译缓存
+  addWebpackPlugin(new HardSourceWebpackPlugin()),
 
   // 自定义配置
   (config) => {

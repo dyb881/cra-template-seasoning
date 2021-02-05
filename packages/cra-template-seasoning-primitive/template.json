@@ -12,6 +12,7 @@
       "babel-plugin-import": "^1.13.3",
       "cross-env": "^7.0.3",
       "customize-cra": "^1.0.0",
+      "hard-source-webpack-plugin": "^0.13.1",
       "less": "3.13.0",
       "less-loader": "^7.1.0",
       "react": "^17.0.1",

@@ -1,5 +1,6 @@
 const { override, addWebpackPlugin, fixBabelImports, addBabelPlugin, addLessLoader } = require('customize-cra');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 const modifyVars = {
   '@s-p': '#1890ff', // 全局主色
@@ -28,6 +29,9 @@ module.exports = override(
 
   // Day.js 替换 momentjs 来大幅减小打包大小
   addWebpackPlugin(new AntdDayjsWebpackPlugin()),
+
+  // 提供编译缓存
+  addWebpackPlugin(new HardSourceWebpackPlugin()),
 
   // 自定义配置
   (config) => {
