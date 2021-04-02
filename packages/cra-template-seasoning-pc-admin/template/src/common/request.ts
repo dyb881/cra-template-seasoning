@@ -45,7 +45,7 @@ export const { baseURL, get, post, put, patch, del, upload } = new Request({
     return config;
   },
   interceptorsResponse: (res, config) => {
-    res.ok || config.noToast || message.error(res.errorText);
+    res.ok || config.noMessage || message.error(res.errorText);
     return res;
   },
 });
