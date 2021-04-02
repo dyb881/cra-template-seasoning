@@ -24,7 +24,7 @@ const Page = combine(({ stores }) => {
 
   return (
     <div className={`fill column-center ${style.login}`}>
-      <img src={require('images/logo.svg')} alt="" />
+      <img src={require('images/logo.svg').default} alt="" />
       <p>{defaultTitle}</p>
       <Form className={style.form} onFinish={onFinish}>
         <FormItem name="username" prefix={<UserOutlined />} size="large" placeholder="请输入用户名" required />

@@ -47,7 +47,7 @@ export const Layout: React.FC = combine(({ stores, children }) => {
           theme={theme}
         >
           <div className={`center ${style.top}`}>
-            <img src={require('images/logo.svg')} alt="" className="transition" />
+            <img src={require('images/logo.svg').default} alt="" className="transition" />
             {isCollapsed || <h1 className="transition">{defaultTitle}</h1>}
           </div>
           {hiddenHeader && (
@@ -74,7 +74,9 @@ export const Layout: React.FC = combine(({ stores, children }) => {
           >
             <div className="between-center">
               <Space>
-                {(isMobile || hiddenMenu) && <img src={require('images/logo.svg')} alt="" className={style.logo} />}
+                {(isMobile || hiddenMenu) && (
+                  <img src={require('images/logo.svg').default} alt="" className={style.logo} />
+                )}
                 {hiddenHeader || <MenuSwitch {...menuSwitchProps} />}
               </Space>
               <Space>
