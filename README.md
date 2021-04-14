@@ -1,6 +1,10 @@
 # Create React App Seasoning Templates
 
-基于 create-react-app + react-app-rewired，使用 Typescript+Less+antd/antd-mobile+Mobx+[seasoning](https://github.com/dyb881/seasoning)组合成的业务开发模版
+基于 create-react-app + react-app-rewired + Typescript + Less 脚手架初始化，并拓展配置<br>
+UI 库默认：antd/antd-mobile（已配置按需加载）<br>
+状态管理默认：Mobx<br>
+拓展工具库：[seasoning](https://github.com/dyb881/seasoning)（已配置按需加载）<br>
+基于以上因素，形成了一个完整的项目业务开发模版[cra-template-seasoning](https://github.com/dyb881/cra-template-seasoning)
 
 ## 学习使用
 
