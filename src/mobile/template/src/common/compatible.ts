@@ -40,7 +40,7 @@ if (isIOS) {
  * 处理 Android 兼容
  */
 if (isAndroid) {
-  // android 键盘弹出、收起，可视区高度会发生变化
+  // Android 键盘弹出、收起，可视区高度会发生变化时，滚动到输入框
   window.addEventListener('resize', activeElementScrollIntoView, false);
 }
 
