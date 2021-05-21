@@ -1,4 +1,4 @@
-import { makeAutoObservable, when } from 'mobx';
+import { makeAutoObservable, when, runInAction } from 'mobx';
 import { message } from 'antd';
 import { menuData } from 'common/menu';
 import { modalConfirm } from 'common/antd';
@@ -127,9 +127,11 @@ export default class User {
   getInfo = async () => {
     const res = await auth.getInfo(`Bearer ${this.access_token}`);
     if (res.ok) {
-      this.info = res.data;
       this.permissionFilter(res.data);
-      this.isLogin = true;
+      runInAction(() => {
+        this.info = res.data;
+        this.isLogin = true;
+      });
     }
     return res;
   };

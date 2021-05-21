@@ -6,6 +6,7 @@ import { TSpinProps } from 'common/antd';
 import { RouterPageHeader, TRouterPageHeaderProps, PaginationMobile, Loading, ButtonMobile, Action } from '../layout';
 import { TableMobile, TTableMobileProps } from './common';
 import { ColumnsSetting, useColumnsSetting } from './columnsSetting';
+import style from './style.module.less';
 
 export type TPageTableProps = Pick<TSpinProps, 'loading'> &
   Pick<TRouterPageHeaderProps, 'onBack' | 'extra'> &
@@ -37,6 +38,7 @@ export const PageTable: React.FC<TPageTableProps> = ({
   return (
     <>
       <RouterPageHeader
+        className={style.tablePageHeader}
         onBack={onBack}
         extra={
           <Action>

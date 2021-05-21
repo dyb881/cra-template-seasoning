@@ -50,7 +50,7 @@ export const useInfo = (options?: TUseInfoOptions) => {
 
   const pageFormProps = { loading, ref: formRef, initialValues: data, scrollToFirstError: true, onFinish };
 
-  return { data, setData, setLoading, pageFormProps, formRef };
+  return { states, setStates, data, setData, setLoading, pageFormProps, formRef };
 };
 
 /**
@@ -69,13 +69,14 @@ export type TUseInfoModalOptions = {
   transformer?: (data: any) => any; // 转化数据
   onSubmit: (values: any) => Promise<boolean>; // 保存数据
   getList?: () => void; // 刷新列表数据
+  messageText?: string;
 };
 
 /**
  * 弹窗表单 Hooks
  */
 export const useInfoModal = (options: TUseInfoModalOptions) => {
-  const { defaultData, getData, transformer, onSubmit, getList } = options;
+  const { defaultData, getData, transformer, onSubmit, getList, messageText } = options;
   const formRef = useForm();
   const { states, setStates } = useStates<TUseInfoModalStates>({
     data: defaultData,
@@ -132,7 +133,7 @@ export const useInfoModal = (options: TUseInfoModalOptions) => {
     setLoading(true);
     const success = await onSubmit(values);
     if (!success) return setLoading(false);
-    message.success(`${isEdit ? '编辑' : '新建'}成功`);
+    message.success(messageText || `${isEdit ? '编辑' : '新建'}成功`);
     hide();
     getList?.();
   };

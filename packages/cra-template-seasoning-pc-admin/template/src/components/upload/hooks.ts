@@ -43,26 +43,35 @@ export const uploadServer = async (file: File, type?: string) => {
   if (res.ok) return res.data;
 };
 
+export type useUploadPictureOptions = {
+  multiple?: boolean;
+  maxSize?: number;
+  onUpload: (url: string) => void;
+};
+
 /**
  * 上传图片 Hooks
  */
-export const useUploadPicture = (multiple?: boolean) => {
+export const useUploadPicture = ({ multiple, onUpload, maxSize = 1024 }: useUploadPictureOptions) => {
   const [loading, setLoading] = useState(false);
 
   const upload = async () => {
     if (loading) return;
     try {
-      const [file] = await getFiles({
+      const files = await getFiles({
         multiple,
-        maxSize: 1024,
+        maxSize,
+        extnames: ['jpg', 'png', 'jpeg'],
         onFile: () => setLoading(true),
       });
-      const url = await uploadOSS(file, 'image');
+      for await (let file of files) {
+        const url = await uploadOSS(file);
+        url && onUpload(url);
+      }
       setLoading(false);
-      return url;
-    } catch {
+    } catch (e) {
       setLoading(false);
-      message.error('仅支持上传图片文件');
+      message.error('仅支持上传后缀名为：jpg、png、jpeg的文件');
     }
   };
 

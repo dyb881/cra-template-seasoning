@@ -1,7 +1,9 @@
-import { useMemo } from 'react';
-import { Select as SelectSource, TreeSelect as TreeSelectSource } from 'antd';
+import { FC, useMemo } from 'react';
+import { Select as SelectSource, TreeSelect as TreeSelectSource, Cascader as CascaderSource } from 'antd';
 import { SelectProps, SelectValue } from 'antd/es/select';
 import { TreeSelectProps } from 'antd/es/tree-select';
+import { CascaderProps } from 'antd/es/cascader';
+import { LoadingOutlined } from '@ant-design/icons';
 import { toOptions } from 'seasoning/es/data-tool';
 import { TOptionsProps } from 'seasoning/es/types';
 
@@ -17,7 +19,7 @@ export const selectFilterOption: TSelectProps['filterOption'] = (input, option) 
 /**
  * 下拉选择框
  */
-export const Select: React.FC<TSelectProps> = ({ options = [], ...props }) => {
+export const Select: FC<TSelectProps> = ({ options = [], ...props }) => {
   const selectOption = useMemo(() => {
     return toOptions(options).map(({ label, ...i }) => (
       <SelectSource.Option key={i.value} {...i}>
@@ -38,6 +40,17 @@ export type TTreeSelectProps<T = any> = TreeSelectProps<T>;
 /**
  * 树选择器
  */
-export const TreeSelect: React.FC<TTreeSelectProps> = ({ value, ...props }) => {
+export const TreeSelect: FC<TTreeSelectProps> = ({ value, ...props }) => {
   return <TreeSelectSource treeDefaultExpandAll allowClear value={value || undefined} {...props} />;
+};
+
+export type TCascaderProps = Partial<CascaderProps> & {
+  loading?: boolean;
+};
+
+/**
+ * 级联选择器
+ */
+export const Cascader: FC<TCascaderProps> = ({ loading, ...props }) => {
+  return <CascaderSource expandTrigger="hover" suffixIcon={loading ? <LoadingOutlined /> : undefined} {...props} />;
 };

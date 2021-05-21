@@ -11,6 +11,7 @@ export type TUseDetailsStates = {
 };
 
 export type TUseDetailsOptions = {
+  defaultData?: TUseDetailsStates['data'];
   getData?: () => void; // 获取数据
 };
 
@@ -19,8 +20,8 @@ export type TUseDetailsOptions = {
  * 自定义 Hooks，内置表格页常用数据
  */
 export const useDetails = (options?: TUseDetailsOptions) => {
-  const { getData } = options || {};
-  const { states, setStates } = useStates<TUseDetailsStates>({ data: {}, loading: false });
+  const { defaultData = {}, getData } = options || {};
+  const { states, setStates } = useStates<TUseDetailsStates>({ data: defaultData, loading: false });
   const { data, loading } = states;
 
   useEffect(() => {
@@ -41,5 +42,5 @@ export const useDetails = (options?: TUseDetailsOptions) => {
 
   const pageDetailsProps = { loading };
 
-  return { data, setData, setLoading, pageDetailsProps };
+  return { states, setStates, data, setData, setLoading, pageDetailsProps, getData };
 };

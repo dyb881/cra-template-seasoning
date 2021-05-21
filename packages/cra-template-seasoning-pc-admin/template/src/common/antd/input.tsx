@@ -7,33 +7,42 @@ import { AutoCompleteProps } from 'antd/es/auto-complete';
 /**
  * 默认文本框最大长度
  */
-export const maxLength = 255;
+export const defaultMaxLength = 255;
 
 /**
  * 文本框
  */
 export const Input: React.FC<InputProps> = (props) => (
-  <InputSource maxLength={maxLength} autoComplete="off" {...props} />
+  <InputSource maxLength={defaultMaxLength} autoComplete="off" {...props} />
 );
 
 /**
  * 大文本框
  */
-export const TextArea: React.FC<TextAreaProps> = (props) => (
-  <InputSource.TextArea showCount maxLength={maxLength} rows={3} {...props} />
+export const TextArea: React.FC<TextAreaProps> = ({ maxLength = defaultMaxLength, onChange, ...props }) => (
+  <InputSource.TextArea
+    showCount
+    maxLength={maxLength}
+    rows={3}
+    onChange={(e) => {
+      if (maxLength && e.target.value.length > maxLength) return;
+      onChange?.(e);
+    }}
+    {...props}
+  />
 );
 
 /**
  * 密码输入框
  */
 export const Password: React.FC<InputProps> = (props) => (
-  <InputSource.Password maxLength={maxLength} autoComplete="new-password" {...props} />
+  <InputSource.Password maxLength={defaultMaxLength} autoComplete="new-password" {...props} />
 );
 
 /**
  * 搜索框
  */
-export const Search: React.FC<SearchProps> = (props) => <InputSource.Search maxLength={maxLength} {...props} />;
+export const Search: React.FC<SearchProps> = (props) => <InputSource.Search maxLength={defaultMaxLength} {...props} />;
 
 /**
  * 数字文本框

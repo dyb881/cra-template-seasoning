@@ -6,7 +6,7 @@ import { useStates } from 'seasoning/es/hooks';
 
 export type TMenuNavData = Pick<TMenuData, 'icon'> & {
   title: string; // 标题
-  path?: string; // 路由地址
+  path?: string; // 注册路由地址
   pagePath?: string; // 绑定组件路径，为空时会尝试使用 path 的路径
   hidden?: boolean; // 不展示到导航菜单
   children?: TMenuNavData[];
@@ -39,10 +39,11 @@ export const MenuNav: React.FC<TMenuNavProps> = ({ reload, data, ...props }) => 
    */
   const onClickItem: TMenuProps['onClickItem'] = (data, key, param) => {
     props.onClickItem?.(data, key, param);
-    if (pathname === data.path) {
+    const { path } = data;
+    if (pathname === path) {
       reload && reload(); // 跳转地址和当前地址相同，执行刷新
     } else {
-      data.path && push(data.path); // 跳转对应地址
+      path && push(path); // 跳转对应地址
     }
   };
 
@@ -123,13 +124,14 @@ export const getMenuNavDataRouters = (data: TMenuNavData[]) => {
  */
 export const getMenuNavDataTitle = (data: TMenuNavData[], pathname: string) => {
   let menuNavDatatitle = '';
-  data.forEach(({ path, title, children }) => {
+  for (let i of data) {
+    const { path, title, children } = i;
     if (matchPath(pathname, { path, exact: true })) {
       menuNavDatatitle = title;
     } else if (!menuNavDatatitle && children?.length) {
       menuNavDatatitle = getMenuNavDataTitle(children, pathname);
     }
-  });
+  }
   return menuNavDatatitle;
 };
 
@@ -138,7 +140,7 @@ export const getMenuNavDataTitle = (data: TMenuNavData[], pathname: string) => {
  */
 export const getMenuNavDatas = (data: TMenuNavData[], pathname: string) => {
   let menuNavDatas: TMenuNavData[] = [];
-  data.forEach((i) => {
+  for (let i of data) {
     const { path, children } = i;
     if (matchPath(pathname, { path, exact: true })) {
       menuNavDatas.push(i);
@@ -146,6 +148,6 @@ export const getMenuNavDatas = (data: TMenuNavData[], pathname: string) => {
       const childrenMenuNavDatas = getMenuNavDatas(children, pathname);
       childrenMenuNavDatas.length && menuNavDatas.push(i, ...childrenMenuNavDatas);
     }
-  });
+  }
   return menuNavDatas;
 };

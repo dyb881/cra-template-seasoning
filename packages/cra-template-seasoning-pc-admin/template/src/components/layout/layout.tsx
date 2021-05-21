@@ -40,7 +40,7 @@ export const Layout: React.FC = combine(({ stores, children }) => {
 
   return (
     <ConfigProvider locale={zh_CN} componentSize={isMobile ? 'small' : componentSize}>
-      <LayoutSource className={classNames('fill', style[componentSize])}>
+      <LayoutSource className={classNames('fill', style.layout, style[componentSize])}>
         <Sider
           className={classNames(style.sider, { [style.hidden]: (isMobile || hiddenMenu) && !collapsed })}
           collapsed={isCollapsed}
@@ -106,7 +106,7 @@ export const Layout: React.FC = combine(({ stores, children }) => {
           <Content className={style.content}>
             <ConfigProvider getPopupContainer={() => box.current || document.body}>
               <div className="page" ref={box}>
-                <RouterBreadcrumb />
+                <RouterBreadcrumb className={style.breadcrumb} />
                 {children}
                 {box.current && (
                   <BackTop target={() => box.current!} style={{ right: backTopPosition, bottom: backTopPosition }} />
