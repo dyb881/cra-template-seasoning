@@ -1,4 +1,5 @@
-import { Form as FormSource, Input } from 'antd';
+import { Form as FormSource } from 'antd';
+import { Input } from './antd/input';
 import { FormInstance } from 'antd/es/form';
 import { FormItemProps } from 'antd/es/form/FormItem';
 import { TFormEnhance, TFormItemPropsEnhance, useFormEnhance, formItemEnhance } from 'seasoning/es/form-enhance';
@@ -15,7 +16,7 @@ export type TFormItemProps = TFormItemPropsEnhance<FormItemProps>;
 
 export const useForm = useFormEnhance<TForm>(FormSource.useForm);
 
-export const FormItem = formItemEnhance<TFormItemProps>(FormSource.Item, () => <Input />);
+export const FormItem = formItemEnhance<TFormItemProps>(FormSource.Item, () => <Input />, { validateFirst: true });
 
 export const Form = FormSource;
 

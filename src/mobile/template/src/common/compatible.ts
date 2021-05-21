@@ -20,9 +20,7 @@
 // import 'core-js/features/set';
 // import 'core-js/features/map';
 // import 'abort-controller/polyfill';
-import { compatible } from 'seasoning';
-
-const { autoRem, isIOS, isAndroid, activeElementScrollIntoView } = compatible;
+import { autoRem, isIOS, isAndroid, activeElementScrollIntoView } from 'seasoning/es/compatible';
 
 autoRem(320, 750, true);
 

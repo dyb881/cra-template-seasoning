@@ -11,7 +11,7 @@ import { stores } from 'stores';
  * 表格状态
  */
 export type TUseTableStates = {
-  search: object; // 搜索内容
+  search: any; // 搜索内容
   current: number; // 当前页码
   pageSize: number; // 每页展示多少条数据
   total: number; // 数据总数
@@ -26,6 +26,7 @@ export type TUseTableOptions = {
   onDel?: (ids: string[]) => Promise<boolean>; // 删除数据
   defaultStates?: Partial<TUseTableStates>; // 默认状态
   tableDataKey?: string; // 表格数据 key
+  useNoPagination?: boolean;
 };
 
 /**
@@ -33,7 +34,7 @@ export type TUseTableOptions = {
  * 自定义 Hooks，内置表格页常用数据
  */
 export const useTable = (options: TUseTableOptions) => {
-  const { onList, onDel, defaultStates, tableDataKey = 'root' } = options;
+  const { onList, onDel, defaultStates, tableDataKey = 'root', useNoPagination } = options;
   const { getTableData, setTableData } = stores.view;
   const formRef = useRef<TForm>(null);
   const { states, setStates } = useStates<TUseTableStates>({
@@ -67,21 +68,28 @@ export const useTable = (options: TUseTableOptions) => {
   /**
    * 获取列表
    */
-  const getList = useCallback(async () => {
+  const getList = async () => {
     setLoading('请求列表');
     await onList(states);
     setLoading(false);
-  }, [useList]);
+  };
+
+  /**
+   * 缓存表格数据
+   */
+  useEffect(() => {
+    setTableData(tableDataKey, { search, current, pageSize });
+  }, useList);
 
   /**
    * 根据监听刷新数据
    */
-  useEffect(() => {
-    // 缓存表格数据
-    setTableData(tableDataKey, { search, current, pageSize });
-    // 请求数据
-    stores.user.onLogin(getList);
-  }, useList);
+  useEffect(
+    () => {
+      stores.user.onLogin(getList);
+    },
+    useNoPagination ? [useList[2]] : useList
+  );
 
   /**
    * 设置表格数据

@@ -58,6 +58,7 @@ export const FormSearch = forwardRef<TForm, TFormSearchProps>(
 
 export type TTableMobileProps = TableProps<any> & {
   widthAddition?: number; // 列宽度之和的前提上追加宽度
+  boxProps?: React.HTMLProps<HTMLDivElement>;
 };
 
 /**
@@ -66,7 +67,7 @@ export type TTableMobileProps = TableProps<any> & {
  * 并自动计算高度
  */
 export const TableMobile = combine<TTableMobileProps>(
-  ({ stores, dataSource = [], columns = [], scroll, widthAddition = 0, ...props }) => {
+  ({ stores, dataSource = [], columns = [], scroll, widthAddition = 0, boxProps, ...props }) => {
     const box = useRef<HTMLDivElement>(null);
     const { states, setStates } = useStates({ y: 0 });
     const { y, tableWidth } = states;
@@ -74,11 +75,13 @@ export const TableMobile = combine<TTableMobileProps>(
 
     useEffect(() => {
       if (!box.current) return;
-      const { clientHeight, firstElementChild, parentElement } = box.current;
-      const theads = firstElementChild?.getElementsByTagName('thead')!;
-      const y = clientHeight - theads?.[0]?.clientHeight;
-      setStates({ y, tableWidth: width - (parentElement?.parentElement?.offsetLeft || 0) - 32 });
-    }, [setting.componentSize, collapsed, width, height, !box.current]);
+      setTimeout(() => {
+        const { clientHeight, firstElementChild, parentElement } = box.current!;
+        const header: any = firstElementChild?.querySelector('.ant-table-header')!;
+        const y = clientHeight - header?.clientHeight - 16;
+        setStates({ y, tableWidth: width - (parentElement?.parentElement?.offsetLeft || 0) - 32 });
+      });
+    }, [setting.componentSize, collapsed, width, height]);
 
     // 列宽之和，用于横向滚动
     const x = useMemo(() => toScrollX(columns) + widthAddition, [columns.length, widthAddition]);
@@ -88,7 +91,8 @@ export const TableMobile = combine<TTableMobileProps>(
       ? columns.map(({ fixed, ...column }) => column)
       : columns.map((i) => {
           if (i.ellipsis && !i.render) {
-            i.render = (v) => {
+            const { ellipsis, ...column } = i;
+            column.render = (v) => {
               return (
                 v && (
                   <Popover
@@ -108,6 +112,7 @@ export const TableMobile = combine<TTableMobileProps>(
                 )
               );
             };
+            return column;
           }
           return i;
         });
@@ -122,7 +127,7 @@ export const TableMobile = combine<TTableMobileProps>(
     };
 
     return (
-      <div ref={box} className={`page-fill ${style.table}`}>
+      <div ref={box} className={`page-fill ${style.table}`} {...boxProps}>
         {dataSource.length > 100 ? <VirtualTable tableWidth={tableWidth} {...tableProps} /> : <Table {...tableProps} />}
       </div>
     );

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, FC } from 'react';
+import React, { useState, useCallback, FC, useRef } from 'react';
 import { Modal, Tooltip, Button, Pagination, Space, Divider, ConfigProvider } from 'antd';
 import {
   FullscreenOutlined,
@@ -148,3 +148,12 @@ export const PaginationMobile = combine<PaginationProps>(({ stores, onChange, ..
  * 动作组件，自动添加分割线
  */
 export const Action: FC = ({ children }) => <Space split={<Divider type="vertical" />}>{children}</Space>;
+
+export const ConfigProviderBox: FC<React.HTMLProps<HTMLDivElement>> = (props) => {
+  const box = useRef(null);
+  return (
+    <ConfigProvider getPopupContainer={() => box.current || document.body}>
+      <div {...props} ref={box} />
+    </ConfigProvider>
+  );
+};
