@@ -39,6 +39,8 @@ const packages = {
 (async () => {
   await updates(packagePath);
 
+  await updates(`${packagePath}-primitive`);
+
   for await (item of Object.keys(packages)) {
     const packagePathItem = `${packagePath}-${item}`;
 
