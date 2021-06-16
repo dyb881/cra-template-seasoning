@@ -6,12 +6,12 @@ import { options } from './config';
 import { SelectCategory } from './select';
 import { infos } from 'apis';
 
-type TParams = { id?: string };
+type TParams = { id?: string; parentId?: string };
 
 const Page = combinePage<TParams>(({ history, match }) => {
-  const { id } = match.params;
+  const { id, parentId } = match.params;
   const { setData, setLoading, pageFormProps } = useInfo({
-    defaultData: { hot: 0, priority: 0, status: 1 },
+    defaultData: { hot: 0, priority: 0, status: 1, parentId },
     getData: async () => {
       if (!id) return;
       setLoading('请求数据');

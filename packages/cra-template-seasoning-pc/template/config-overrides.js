@@ -1,4 +1,11 @@
-const { override, addWebpackPlugin, fixBabelImports, addBabelPlugin, addLessLoader } = require('customize-cra');
+const {
+  override,
+  addWebpackPlugin,
+  fixBabelImports,
+  addBabelPlugin,
+  addLessLoader,
+  addWebpackExternals,
+} = require('customize-cra');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 const modifyVars = {
@@ -16,6 +23,8 @@ const modifyVars = {
   '@s-b': '#fff', // 背景色
 };
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = override(
   // 添加 less-loader
   addLessLoader({ lessOptions: { javascriptEnabled: true, modifyVars } }),
@@ -29,6 +38,13 @@ module.exports = override(
   // Day.js 替换 momentjs 来大幅减小打包大小
   addWebpackPlugin(new AntdDayjsWebpackPlugin()),
 
+  isProduction &&
+    addWebpackExternals({
+      react: 'window.React',
+      'react-dom': 'window.ReactDOM',
+      'react-router-dom': 'window.ReactRouterDOM',
+    }),
+
   // 自定义配置
   (config) => {
     // 全局删除 console
@@ -38,7 +54,7 @@ module.exports = override(
 
     // 打印运行配置
     // const fs = require('fs');
-    // fs.writeFileSync(`config-${process.env.NODE_ENV}.json`, JSON.stringify(config, null, 2));
+    // fs.writeFileSync(`config-${process.env.NODE_ENV}.json`, JSON.stringify(config.plugins[0], null, 2));
 
     return config;
   }

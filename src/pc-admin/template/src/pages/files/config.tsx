@@ -12,10 +12,10 @@ export const createColumns = ({ fileType, edit, del }: any) => {
   const columns: ColumnsType = [
     {
       title: '预览',
-      key: 'preview',
+      dataIndex: 'preview',
       width: 60,
       fixed: 'left',
-      render: ({ url: src, type, name }) => <PreviewColumn {...{ src, type, name }} />,
+      render: (src, { type, name }: any) => <PreviewColumn {...{ src, type, name }} />,
     },
     {
       title: '文件名',

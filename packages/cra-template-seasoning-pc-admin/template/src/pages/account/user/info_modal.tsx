@@ -32,7 +32,7 @@ export const useInfo = (getList: () => void) => {
       >
         <Password />
       </FormItem>
-      <FormItem label="手机号" name="phone" placeholder required />
+      <FormItem label="手机号" name="phone" placeholder />
       <FormItem label="昵称" name="nickname" placeholder required />
       <FormItem label="状态" name="status">
         <Radio options={options.status} />

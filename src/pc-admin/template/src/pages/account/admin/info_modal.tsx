@@ -34,7 +34,7 @@ export const useInfo = (getList: () => void, onOk: (username: string) => void) =
       >
         <Password />
       </FormItem>
-      <FormItem label="手机号" name="phone" placeholder required />
+      <FormItem label="手机号" name="phone" placeholder />
       <FormItem label="昵称" name="nickname" placeholder required />
       <FormItem label="管理角色" name="roleId" placeholder select required>
         <SelectAdminRole />

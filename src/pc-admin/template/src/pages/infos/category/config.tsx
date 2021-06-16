@@ -45,10 +45,13 @@ export const createColumns = ({ del }: any) => {
     {
       title: '操作',
       key: 'action',
-      width: 120,
+      width: 210,
       fixed: 'right',
       render: (data) => (
         <Action>
+          <Link className="success" to={`/infos/category/info/add/${data.id}`}>
+            添加子分类
+          </Link>
           <Link className="edit" to={`/infos/category/info/${data.id}`}>
             编辑
           </Link>

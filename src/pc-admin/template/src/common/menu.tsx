@@ -34,6 +34,12 @@ export const menuData: TMenuNavData[] = [
         permission: 'infos.category.query',
         children: [
           { path: '/infos/category/info', title: '添加分类', hidden: true },
+          {
+            pagePath: '/infos/category/info',
+            path: '/infos/category/info/add/:parentId',
+            title: '添加分类',
+            hidden: true,
+          },
           { path: '/infos/category/info/:id', title: '编辑分类', hidden: true },
         ],
       },
