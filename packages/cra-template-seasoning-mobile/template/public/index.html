@@ -34,7 +34,7 @@
     <div id="root">
       <div class="fill center">Loading...</div>
     </div>
-    <% if (process.env.NODE_ENV === 'production') { %>
+    <% if (process.env.REACT_APP_CDN === 'true') { %>
     <script
       crossorigin
       src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/react/17.0.2/umd/react.production.min.js"

@@ -38,7 +38,7 @@ module.exports = override(
   // Day.js 替换 momentjs 来大幅减小打包大小
   addWebpackPlugin(new AntdDayjsWebpackPlugin()),
 
-  isProduction &&
+  process.env.REACT_APP_CDN === 'true' &&
     addWebpackExternals({
       react: 'window.React',
       'react-dom': 'window.ReactDOM',
