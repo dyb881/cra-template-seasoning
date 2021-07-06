@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { FormItem, Select } from 'common/antd';
-import { toFileUrl } from 'common/request';
 import { useTable, PageTable, FormSearch } from 'components';
 import { options, createColumns } from './config';
 import { useInfo } from './info_modal';
@@ -24,7 +23,7 @@ const Page = () => {
       res.ok &&
         setData(
           res.data.list.map((i: any) => {
-            return { ...i, preview: toFileUrl(i.url) };
+            return { ...i, preview: i.url };
           }),
           res.data.total
         );
