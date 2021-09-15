@@ -1,9 +1,4 @@
-import { get, post, put, del, upload } from 'common/request';
-
-/**
- * 缓存区域
- */
-const cache: any = {};
+import { get, post, put, del } from 'common/request';
 
 /**
  * 鉴权
@@ -11,6 +6,14 @@ const cache: any = {};
 export const auth = {
   login: (data: any) => post('/auth', data, '登录'),
   getInfo: (Authorization: string) => get('/auth', {}, '获取帐号信息', { noMessage: true, headers: { Authorization } }),
+};
+
+/**
+ * 文件
+ */
+export const oss = {
+  sts: () => get('/oss/sts', {}, '获取临时授权'),
+  getPutObject: (data: any) => get('/oss/put/object', data, '获取OSS上传对象'),
 };
 
 /**
@@ -23,66 +26,25 @@ export const account = {
   del: (ids: string[]) => del('/account', { ids }, '删除账号'),
 
   admin: {
-    getList: (data: any) => get('/account-admin', data, '获取管理员列表'),
-    add: (data: any) => post('/account-admin', data, '添加管理员'),
-    edit: ({ id, ...data }: any) => put(`/account-admin/${id}`, data, '编辑管理员'),
-    del: (ids: string[]) => del('/account-admin', { ids }, '删除管理员'),
+    getList: (data: any) => get('/account/admin', data, '获取管理员列表'),
+    add: (data: any) => post('/account/admin', data, '添加管理员'),
+    edit: ({ id, ...data }: any) => put(`/account/admin/${id}`, data, '编辑管理员'),
+    del: (ids: string[]) => del('/account/admin', { ids }, '删除管理员'),
 
     role: {
-      getConfig: async () => {
-        const res = cache.adminRoleConfig || (await get('/role-admin/default-config', {}, '获取角色管理权限配置'));
-        if (res.ok) cache.adminRoleConfig = res;
-        return res;
-      },
-      getList: async () => {
-        const res = cache['role-admin'] || (await get('/role-admin', {}, '获取管理员角色列表'));
-        if (res.ok) cache['role-admin'] = res;
-        return res;
-      },
-      add: async (data: any) => {
-        const res = await post('/role-admin', data, '添加管理员角色');
-        if (res.ok) delete cache['role-admin'];
-        return res;
-      },
-      edit: async ({ id, ...data }: any) => {
-        const res = await put(`/role-admin/${id}`, data, '编辑管理员角色');
-        if (res.ok) delete cache['role-admin'];
-        return res;
-      },
-      del: async (ids: string[]) => {
-        const res = await del('/role-admin', { ids }, '删除管理员角色');
-        if (res.ok) delete cache['role-admin'];
-        return res;
-      },
+      getConfig: () => get('/account/admin/role/config', {}, '获取角色管理权限配置', { cacheKey: 'role-config' }),
+      getList: (data?: any) => get('/account/admin/role/all', data, '获取管理员角色列表'),
+      add: (data: any) => post('/account/admin/role', data, '添加管理员角色'),
+      edit: ({ id, ...data }: any) => put(`/account/admin/role/${id}`, data, '编辑管理员角色'),
+      del: (ids: string[]) => del('/account/admin/role', { ids }, '删除管理员角色'),
     },
   },
 
   user: {
-    getList: (data: any) => get('/account-user', data, '获取用户列表'),
-    add: (data: any) => post('/account-user', data, '添加用户'),
-    edit: ({ id, ...data }: any) => put(`/account-user/${id}`, data, '编辑用户'),
-    del: (ids: string[]) => del('/account-user', { ids }, '删除用户'),
-  },
-};
-
-/**
- * 文件
- */
-export const files = {
-  getList: (data: any) => get('/files', data, '获取文件列表'),
-  add: (data: any) => post('/files', data, '添加文件'),
-  edit: ({ id, ...data }: any) => put(`/files/${id}`, data, '编辑文件'),
-  del: (ids: string[]) => del('/files', { ids }, '删除文件'),
-
-  config: {
-    get: () => get('/files-config', {}, '获取文件配置'),
-    save: (data: any) => post('/files-config', data, '保存文件配置'),
-  },
-
-  upload: {
-    server: ({ type, file }: any) => upload(`/upload/server/${type}`, { file }, '上传到服务器'),
-    sts: () => get('/upload/sts', {}, '获取临时授权'),
-    path: (data: any) => get('/upload/path', data, '获取上传路径'),
+    getList: (data: any) => get('/account/user', data, '获取用户列表'),
+    add: (data: any) => post('/account/user', data, '添加用户'),
+    edit: ({ id, ...data }: any) => put(`/account/user/${id}`, data, '编辑用户'),
+    del: (ids: string[]) => del('/account/user', { ids }, '删除用户'),
   },
 };
 
@@ -91,34 +53,18 @@ export const files = {
  */
 export const infos = {
   category: {
-    getList: async (data?: any) => {
-      const res = (!data && cache.category) || (await get('/category', data, '获取分类列表'));
-      if (res.ok) cache.category = res;
-      return res;
-    },
-    details: (id: string) => get(`/category/${id}`, {}, '获取分类'),
-    add: async (data: any) => {
-      const res = await post('/category', data, '添加分类');
-      if (res.ok) delete cache.category;
-      return res;
-    },
-    edit: async ({ id, ...data }: any) => {
-      const res = await put(`/category/${id}`, data, '编辑分类');
-      if (res.ok) delete cache.category;
-      return res;
-    },
-    del: async (ids: string[]) => {
-      const res = await del('/category', { ids }, '删除分类');
-      if (res.ok) delete cache.category;
-      return res;
-    },
+    getList: (data?: any) => get('/infos/category/all', data, '获取分类列表'),
+    details: (id: string) => get(`/infos/category/${id}`, {}, '获取分类'),
+    add: (data: any) => post('/infos/category', data, '添加分类'),
+    edit: ({ id, ...data }: any) => put(`/infos/category/${id}`, data, '编辑分类'),
+    del: (ids: string[]) => del('/infos/category', { ids }, '删除分类'),
   },
 
-  information: {
-    getList: (data: any) => get('/information', data, '获取信息列表'),
-    details: (id: string) => get(`/information/${id}`, {}, '获取信息'),
-    add: (data: any) => post('/information', data, '添加信息'),
-    edit: ({ id, ...data }: any) => put(`/information/${id}`, data, '编辑信息'),
-    del: (ids: string[]) => del('/information', { ids }, '删除信息'),
+  article: {
+    getList: (data: any) => get('/infos/article', data, '获取文章列表'),
+    details: (id: string) => get(`/infos/article/${id}`, {}, '获取文章'),
+    add: (data: any) => post('/infos/article', data, '添加文章'),
+    edit: ({ id, ...data }: any) => put(`/infos/article/${id}`, data, '编辑文章'),
+    del: (ids: string[]) => del('/infos/article', { ids }, '删除文章'),
   },
 };

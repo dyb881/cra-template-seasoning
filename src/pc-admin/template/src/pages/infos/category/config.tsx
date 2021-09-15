@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Badge } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { Action, PreviewColumn } from 'components';
@@ -6,7 +5,7 @@ import { Action, PreviewColumn } from 'components';
 /**
  * 生成表格配置数据
  */
-export const createColumns = ({ del }: any) => {
+export const createColumns = ({ add, edit, del }: any) => {
   const columns: ColumnsType = [
     {
       title: '标题',
@@ -19,24 +18,6 @@ export const createColumns = ({ del }: any) => {
       width: 60,
       render: (v) => <PreviewColumn src={v} name="图标" />,
     },
-    {
-      title: '图组',
-      dataIndex: 'pictureGroup',
-      width: 60,
-      render: (v) => <PreviewColumn src={v} name="图组" type="imageGroup" />,
-    },
-    {
-      title: '简介',
-      dataIndex: 'summary',
-      width: 200,
-      ellipsis: true,
-    },
-    {
-      title: '内容',
-      dataIndex: 'content',
-      width: 200,
-      ellipsis: true,
-    },
     { title: '创建时间', dataIndex: 'create_date', width: 180 },
     { title: '更新时间', dataIndex: 'update_date', width: 180 },
     { title: '热度', dataIndex: 'hot', width: 90, fixed: 'right' },
@@ -45,16 +26,16 @@ export const createColumns = ({ del }: any) => {
     {
       title: '操作',
       key: 'action',
-      width: 210,
+      width: 230,
       fixed: 'right',
       render: (data) => (
         <Action>
-          <Link className="success" to={`/infos/category/info/add/${data.id}`}>
+          <span className="success pointer" onClick={() => add({ parentId: data.id })}>
             添加子分类
-          </Link>
-          <Link className="edit" to={`/infos/category/info/${data.id}`}>
+          </span>
+          <span className="edit pointer" onClick={() => edit(data)}>
             编辑
-          </Link>
+          </span>
           <span className="delete pointer" onClick={() => del([data.id])}>
             删除
           </span>

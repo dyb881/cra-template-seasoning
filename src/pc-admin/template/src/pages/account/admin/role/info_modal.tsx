@@ -46,7 +46,7 @@ const Permissions = combine<TInputNotRequired<any>>(({ stores, value, onChange }
   const getTreeData = (permissions: any, k = ''): any[] => {
     return Object.keys(permissions).map((i) => {
       const key = k ? `${k}.${i}` : i;
-      const title = titles[key] || actions[key.split('.').pop()!];
+      const title = titles[key] || titles[key.split('.').pop()!];
       const item: any = { key, title };
       if (typeof permissions[i] !== 'boolean') {
         item.children = getTreeData(permissions[i], key);
@@ -79,19 +79,19 @@ const Permissions = combine<TInputNotRequired<any>>(({ stores, value, onChange }
 });
 
 const titles: any = {
+  query: '查询',
+  create: '新建',
+  update: '编辑',
+  delete: '删除',
   account: '账号管理',
-  'account.account': '基础账号',
-  'account.roleAdmin': '管理员角色',
+  'account.adminRole': '管理员角色',
   'account.admin': '管理员账号',
   'account.user': '用户账号',
-  files: '文件管理',
-  'files.files': '文件信息',
-  'files.config': '文件配置',
   infos: '信息管理',
-  'infos.category': '分类管理',
-  'infos.information': '信息列表',
+  'infos.category': '信息分类',
+  'infos.article': '文章管理',
+  system: '系统设置',
+  'system.files': '文件管理',
 };
 
 export const titleKeys = Object.keys(titles);
-
-const actions: any = { query: '查询', create: '新建', update: '编辑', delete: '删除' };
