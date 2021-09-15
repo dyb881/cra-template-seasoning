@@ -15,14 +15,14 @@ const Page = combinePage<TParams>(({ history, match }) => {
     getData: async () => {
       if (!id) return;
       setLoading('请求数据');
-      const res = await infos.information.details(id);
+      const res = await infos.article.details(id);
       res.ok && setData(res.data);
       setLoading(false);
     },
     onFinish: async (values: any) => {
       setLoading('正在保存');
       if (id) values.id = id; // 编辑时需要带入 ID
-      const res = await infos.information[id ? 'edit' : 'add'](values);
+      const res = await infos.article[id ? 'edit' : 'add'](values);
       if (!res.ok) return setLoading(false);
       message.success(`${id ? '保存' : '新建'}成功`);
       history.goBack();

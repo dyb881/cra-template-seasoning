@@ -1,8 +1,7 @@
 import { useMemo } from 'react';
-import { FormItem, Select } from 'common/antd';
+import { FormItem } from 'common/antd';
 import { useTable, PageTable, FormSearch } from 'components';
 import { createColumns } from './config';
-import { options } from '../config';
 import { useInfo } from './info_modal';
 import { account } from 'apis';
 
@@ -30,9 +29,6 @@ const Page = () => {
         <FormItem label="用户名" name="username" placeholder />
         <FormItem label="手机号" name="phone" placeholder />
         <FormItem label="昵称" name="nickname" placeholder />
-        <FormItem label="状态" name="status" placeholder select>
-          <Select options={options.status} />
-        </FormItem>
       </FormSearch>
       {modalForm}
     </PageTable>

@@ -4,8 +4,8 @@ import { useTable, PageTable, FormSearch } from 'components';
 import { combine } from 'stores';
 import { SelectAdminRole } from './role/select';
 import { createColumns } from './config';
-import { options } from '../config';
 import { useInfo } from './info_modal';
+import { options } from './config';
 import { account } from 'apis';
 
 const Page = combine(({ stores }) => {

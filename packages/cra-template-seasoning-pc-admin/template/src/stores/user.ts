@@ -70,7 +70,7 @@ export default class User {
     };
     const menu = permissionFilter(cloneDeep(menuData));
     // 当前路由不可用，跳转到可用路由的第一个
-    isAvailable || history.push(menu[0].children[0].path);
+    isAvailable || history.push(menu[0]?.children[0].path);
     this.menu = menu;
   }
 

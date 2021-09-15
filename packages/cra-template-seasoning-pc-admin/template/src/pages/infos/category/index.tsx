@@ -2,11 +2,12 @@ import { useMemo } from 'react';
 import { FormItem, Select } from 'common/antd';
 import { useTable, PageTable, FormSearch } from 'components';
 import { createColumns, options } from './config';
+import { useInfo } from './info_modal';
 import { toThree } from './select';
 import { infos } from 'apis';
 
 const Page = () => {
-  const { states, setData, pageTableProps, formSearchProps, del, DelButton } = useTable({
+  const { states, setData, pageTableProps, formSearchProps, del, DelButton, getList } = useTable({
     onList: async ({ search }) => {
       const res = await infos.category.getList(search);
       res.ok && setData(res.data);
@@ -17,8 +18,11 @@ const Page = () => {
     },
   });
 
+  // 弹窗表单
+  const { modalForm, add, edit } = useInfo(getList);
+
   // 生成表格配置数据
-  const columns = useMemo(() => createColumns({ del }), []);
+  const columns = useMemo(() => createColumns({ add, edit, del }), []);
 
   const dataSource = toThree(states.dataSource);
 
@@ -29,7 +33,7 @@ const Page = () => {
       dataSource={dataSource}
       columns={columns}
       extra={<DelButton />}
-      add="/infos/category/info"
+      add={add}
       paginationClose
       expandable={{
         defaultExpandAllRows: true,
@@ -43,6 +47,7 @@ const Page = () => {
           <Select options={options.status} />
         </FormItem>
       </FormSearch>
+      {modalForm}
     </PageTable>
   );
 };

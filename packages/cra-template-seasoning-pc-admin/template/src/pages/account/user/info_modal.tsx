@@ -1,6 +1,5 @@
-import { FormItem, Radio, Password } from 'common/antd';
+import { FormItem, Password } from 'common/antd';
 import { RouterTitle, FormModal, useInfoModal, UploadPicture } from 'components';
-import { options } from '../config';
 import { account } from 'apis';
 
 export const useInfo = (getList: () => void) => {
@@ -34,9 +33,6 @@ export const useInfo = (getList: () => void) => {
       </FormItem>
       <FormItem label="手机号" name="phone" placeholder />
       <FormItem label="昵称" name="nickname" placeholder required />
-      <FormItem label="状态" name="status">
-        <Radio options={options.status} />
-      </FormItem>
     </FormModal>
   );
 

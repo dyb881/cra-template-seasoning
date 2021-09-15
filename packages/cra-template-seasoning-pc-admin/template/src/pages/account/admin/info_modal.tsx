@@ -1,7 +1,7 @@
 import { FormItem, Radio, Password } from 'common/antd';
 import { RouterTitle, FormModal, useInfoModal, UploadPicture } from 'components';
 import { SelectAdminRole } from './role/select';
-import { options } from '../config';
+import { options } from './config';
 import { account } from 'apis';
 
 export const useInfo = (getList: () => void, onOk: (username: string) => void) => {

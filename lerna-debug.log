@@ -1,0 +1,12 @@
+16 error Error: Command failed: git remote update
+16 error fatal: unable to access 'https://github.com/dyb881/cra-template-seasoning/': LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
+16 error error: 不能获取 origin
+16 error
+16 error 正在获取 origin
+16 error
+16 error     at makeError (/Users/dyb/Documents/个人/github/cra-template-seasoning/node_modules/.pnpm/execa@1.0.0/node_modules/execa/index.js:174:9)
+16 error     at Function.module.exports.sync (/Users/dyb/Documents/个人/github/cra-template-seasoning/node_modules/.pnpm/execa@1.0.0/node_modules/execa/index.js:338:15)
+16 error     at Object.execSync (/Users/dyb/Documents/个人/github/cra-template-seasoning/node_modules/.pnpm/@lerna+child-process@3.16.5/node_modules/@lerna/child-process/index.js:26:16)
+16 error     at updateRemote (/Users/dyb/Documents/个人/github/cra-template-seasoning/node_modules/.pnpm/@lerna+version@3.22.1/node_modules/@lerna/version/lib/is-behind-upstream.js:26:16)
+16 error     at isBehindUpstream (/Users/dyb/Documents/个人/github/cra-template-seasoning/node_modules/.pnpm/@lerna+version@3.22.1/node_modules/@lerna/version/lib/is-behind-upstream.js:11:3)
+16 error     at VersionCommand.initialize (/Users/dyb/Documents/个人/github/cra-template-seasoning/node_modules/.pnpm/@lerna+version@3.22.1/node_modules/@lerna/version/index.js:154:9)

@@ -19,11 +19,11 @@ const Page = () => {
         }
       }
 
-      const res = await infos.information.getList({ current, pageSize, ...search });
+      const res = await infos.article.getList({ current, pageSize, ...search });
       res.ok && setData(res.data.list, res.data.total);
     },
     onDel: async (ids) => {
-      const res = await infos.information.del(ids);
+      const res = await infos.article.del(ids);
       return res.ok;
     },
   });
@@ -33,13 +33,7 @@ const Page = () => {
   const columns = useMemo(() => createColumns({ del, menuData }), [!menuData]);
 
   return (
-    <PageTable
-      {...pageTableProps}
-      columns={columns}
-      extra={<DelButton />}
-      add="/infos/information/info"
-      paginationClose
-    >
+    <PageTable {...pageTableProps} columns={columns} extra={<DelButton />} add="/infos/article/info" paginationClose>
       <FormSearch {...formSearchProps}>
         <FormItem label="所属菜单" name="categoryId" placeholder select>
           <SelectCategory style={{ minWidth: 200 }} />

@@ -10,7 +10,7 @@ export const createColumns = ({ edit, del }: any) => {
     {
       title: '操作',
       key: 'action',
-      width: 120,
+      width: 125,
       fixed: 'right',
       render: (data) => (
         <Action>
