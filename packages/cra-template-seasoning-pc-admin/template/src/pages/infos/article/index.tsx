@@ -33,7 +33,7 @@ const Page = () => {
   const columns = useMemo(() => createColumns({ del, menuData }), [!menuData]);
 
   return (
-    <PageTable {...pageTableProps} columns={columns} extra={<DelButton />} add="/infos/article/info" paginationClose>
+    <PageTable {...pageTableProps} columns={columns} extra={<DelButton />} add="/infos/article/info">
       <FormSearch {...formSearchProps}>
         <FormItem label="所属菜单" name="categoryId" placeholder select>
           <SelectCategory style={{ minWidth: 200 }} />

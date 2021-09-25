@@ -3,6 +3,7 @@ const { join } = require('path');
 const ncu = require('npm-check-updates');
 
 const updates = async (packagePath) => {
+  return;
   console.log('包版本更新', packagePath);
   const templatePath = join(packagePath, 'template.json');
   const json = require(templatePath);

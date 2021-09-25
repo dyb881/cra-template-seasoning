@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { message } from 'antd';
 import { getFiles } from 'seasoning/es/file-tool';
-import { oss as ossApi } from 'apis';
+import { oss as ossApi, upload } from 'apis';
 import OSS from 'ali-oss';
 
 let oss: OSS;
@@ -33,16 +33,31 @@ export const uploadOSS = async (file: File) => {
   return pathRes.data.url as string;
 };
 
+/**
+ * 上传文件到服务器
+ */
+export const uploadServer = async (file: File) => {
+  if (file instanceof Blob) file = new File([file], file.name);
+  const res = await upload({ file });
+  if (res.ok) return res.data.url;
+};
+
 export type useUploadPictureOptions = {
   multiple?: boolean;
   maxSize?: number;
+  extnames?: string[];
   onUpload: (url: string) => void;
 };
 
 /**
  * 上传图片 Hooks
  */
-export const useUploadPicture = ({ multiple, onUpload, maxSize = 1024 }: useUploadPictureOptions) => {
+export const useUploadPicture = ({
+  multiple,
+  onUpload,
+  maxSize = 1024,
+  extnames = ['jpg', 'png', 'jpeg'],
+}: useUploadPictureOptions) => {
   const [loading, setLoading] = useState(false);
 
   const upload = async () => {
@@ -51,11 +66,11 @@ export const useUploadPicture = ({ multiple, onUpload, maxSize = 1024 }: useUplo
       const files = await getFiles({
         multiple,
         maxSize,
-        extnames: ['jpg', 'png', 'jpeg'],
+        extnames,
         onFile: () => setLoading(true),
       });
       for await (let file of files) {
-        const url = await uploadOSS(file);
+        const url = await uploadServer(file);
         url && onUpload(url);
       }
       setLoading(false);

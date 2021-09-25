@@ -35,9 +35,6 @@ const Page = () => {
       extra={<DelButton />}
       add={add}
       paginationClose
-      expandable={{
-        defaultExpandAllRows: true,
-      }}
     >
       <FormSearch {...formSearchProps}>
         <FormItem label="标题" name="title" placeholder />

@@ -3,6 +3,7 @@ import { Image } from 'antd';
 import { UploadOutlined, LoadingOutlined, CloseCircleFilled, FileImageOutlined } from '@ant-design/icons';
 import { TInputNotRequired } from 'seasoning/es/types';
 import { useUploadPicture, useUploadPictureOptions } from './hooks';
+import { PreviewColumn } from '../layout';
 import style from './style.module.less';
 
 type TUploadButtonProps = React.HTMLProps<HTMLDivElement> & { loading?: boolean; id?: string };
@@ -32,19 +33,26 @@ type TUploadPreviewProps = { src?: string; onDel?: () => void; errorIcon?: React
 export const UploadPreview: FC<TUploadPreviewProps> = ({ src, onDel, errorIcon }) => {
   const [error, setError] = useState<any>();
 
+  let type: 'video' | '' = '';
+  if (src && /mp4$/.test(src)) type = 'video';
+
   return (
     <div className={style.uploadPreview}>
-      {error || (
-        <Image
-          src={src}
-          className={style.image}
-          alt="地址失效"
-          onError={() => {
-            setError(
-              <div className={`center ${style.image} ${style.error}`}>{errorIcon || <FileImageOutlined />}</div>
-            );
-          }}
-        />
+      {src && type ? (
+        <PreviewColumn src={src} type={type} className={`center ${style.video}`} />
+      ) : (
+        error || (
+          <Image
+            src={src}
+            className={style.image}
+            alt="地址失效"
+            onError={() => {
+              setError(
+                <div className={`center ${style.image} ${style.error}`}>{errorIcon || <FileImageOutlined />}</div>
+              );
+            }}
+          />
+        )
       )}
       <CloseCircleFilled
         className={`delete transition ${style.del}`}
