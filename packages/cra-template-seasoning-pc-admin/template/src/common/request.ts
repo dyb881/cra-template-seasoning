@@ -33,7 +33,7 @@ if (!isProduction) {
  */
 export const { baseURL, get, post, put, patch, del, upload } = new Request({
   host, // 请求服务地址
-  apiPath: '/api', // 接口公用路径
+  apiPath: '', // 接口公用路径
   console: true, // 打印日志
   interceptorsRequest: (config) => {
     if (stores.user.isLogin) {

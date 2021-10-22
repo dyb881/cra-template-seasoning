@@ -39,7 +39,7 @@ export const UploadPreview: FC<TUploadPreviewProps> = ({ src, onDel, errorIcon }
   return (
     <div className={style.uploadPreview}>
       {src && type ? (
-        <PreviewColumn src={src} type={type} className={`center ${style.video}`} />
+        <PreviewColumn src={src} type={type} />
       ) : (
         error || (
           <Image

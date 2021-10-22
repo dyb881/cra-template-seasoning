@@ -1,4 +1,4 @@
-import { get, post, put, del } from 'common/request';
+import { get, post, put, del, upload as uploadRequest } from 'common/request';
 
 /**
  * 鉴权
@@ -15,6 +15,11 @@ export const oss = {
   sts: () => get('/oss/sts', {}, '获取临时授权'),
   getPutObject: (data: any) => get('/oss/put/object', data, '获取OSS上传对象'),
 };
+
+/**
+ * 服务器文件上传
+ */
+export const upload = (data: any) => uploadRequest('/upload', data, '上传文件');
 
 /**
  * 帐号
