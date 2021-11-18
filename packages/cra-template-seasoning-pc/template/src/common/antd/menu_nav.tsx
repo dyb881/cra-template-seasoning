@@ -41,7 +41,7 @@ export const MenuNav: React.FC<TMenuNavProps> = ({ reload, data, ...props }) => 
     props.onClickItem?.(data, key, param);
     const { path } = data;
     if (pathname === path) {
-      reload && reload(); // 跳转地址和当前地址相同，执行刷新
+      reload?.(); // 跳转地址和当前地址相同，执行刷新
     } else {
       path && push(path); // 跳转对应地址
     }
