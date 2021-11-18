@@ -22,17 +22,6 @@ interface FormInstances extends FormInstance {
 
 // ------------------------ 类型增强 ------------------------ //
 
-export interface FieldError {
-  name: InternalNamePath;
-  errors: string[];
-  warnings: string[];
-}
-
-interface FormInstances extends FormInstance {
-  getFieldWarning: (name: NamePath) => string[];
-  getFieldsError: (nameList?: NamePath[]) => FieldError[];
-}
-
 export type TForm = TFormEnhance<FormInstances>;
 
 export type TFormItemProps = TFormItemPropsEnhance<FormItemProps>;
