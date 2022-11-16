@@ -68,7 +68,7 @@ export const autoCompleteFilterOption: AutoCompleteProps['filterOption'] = (inpu
  * 自动完成
  */
 export const AutoComplete: React.FC<TAutoCompleteProps> = ({ options = [], ...props }) => {
-  const autoCompleteOptions = useMemo(() => options.map((value) => ({ value })), [JSON.stringify(options)]);
+  const autoCompleteOptions = useMemo(() => options.map((label) => ({ label })), [JSON.stringify(options)]);
 
   return <AutoCompleteSource filterOption={autoCompleteFilterOption} options={autoCompleteOptions} {...props} />;
 };

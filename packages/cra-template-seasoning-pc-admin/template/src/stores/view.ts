@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx';
 
 /**
- * 用户
+ * 视图
  */
-export default class User {
+export default class View {
   /**
    * 表格数据临时储存
    */
