@@ -5,9 +5,9 @@ import { fileToBase64 } from 'seasoning/es/file-tool';
 type TSetting = any;
 
 /**
- * 用户
+ * 页面布局
  */
-export default class User {
+export default class Layout {
   constructor() {
     makeAutoObservable(this);
     this.resize();

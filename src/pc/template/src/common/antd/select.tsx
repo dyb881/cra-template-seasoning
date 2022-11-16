@@ -13,7 +13,7 @@ export type TSelectProps = Omit<SelectProps<SelectValue>, 'options'> & TOptionsP
  * 下拉选择框过滤器
  */
 export const selectFilterOption: TSelectProps['filterOption'] = (input, option) => {
-  return !!option && typeof option.children === 'string' && option.children.toLowerCase().includes(input.toLowerCase());
+  return !!option && typeof option.label === 'string' && option.label.toLowerCase().includes(input.toLowerCase());
 };
 
 /**
@@ -44,7 +44,7 @@ export const TreeSelect: FC<TTreeSelectProps> = ({ value, ...props }) => {
   return <TreeSelectSource treeDefaultExpandAll allowClear value={value || undefined} {...props} />;
 };
 
-export type TCascaderProps = Partial<CascaderProps> & {
+export type TCascaderProps = CascaderProps<any> & {
   loading?: boolean;
 };
 
